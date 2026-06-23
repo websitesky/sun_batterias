@@ -462,56 +462,178 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
 .float-q-mob{display:none;position:fixed;bottom:24px;left:24px;z-index:1500;background:var(--grad);border:none;border-radius:50px;padding:14px 20px;color:#000;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 4px 20px rgba(255,215,0,.55);transition:.3s;white-space:nowrap}
 .float-q-mob:hover{transform:scale(1.06);box-shadow:0 6px 32px rgba(255,215,0,.8)}
 
-/* ── MOBILE NAV ── */
+/* ══════════════════════════════════════
+   TABLET  ≤ 1024px
+══════════════════════════════════════ */
+@media(max-width:1024px){
+  .sec{padding:72px 32px}
+  .month-section{padding:0 32px 72px}
+  .sm3{gap:28px}
+  .pg{grid-template-columns:repeat(2,1fr)}
+  .vt-grid{grid-template-columns:repeat(2,1fr)}
+  .creds-row{grid-template-columns:repeat(2,1fr)}
+  .ab-full img{height:340px}
+  .quiz-wrap{padding:36px 28px}
+  .pf-block{padding:28px 32px}
+  .fcta{padding:52px 36px}
+}
+
+/* ══════════════════════════════════════
+   MOBILE  ≤ 900px
+══════════════════════════════════════ */
 @media(max-width:900px){
-  #hdr.s{padding:11px 20px}
-  .hdr-top{padding:13px 20px}
-  .hdr-nav{padding:10px 20px;display:none;position:absolute;top:100%;left:0;right:0;background:rgba(8,8,8,.98);border-bottom:1px solid var(--border);z-index:100}
-  .hdr-nav.open{display:flex;flex-wrap:wrap;gap:8px;padding:14px 20px}
-  .hdr-nav a{font-size:14px;padding:8px 16px}
+  /* Header */
+  .hdr-top{padding:12px 18px}
+  .hdr-nav{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(8,8,8,.98);border-bottom:1px solid var(--border);z-index:100;padding:0}
+  .hdr-nav.open{display:flex;flex-wrap:wrap;gap:6px;padding:12px 18px 16px}
+  .hdr-nav a{font-size:13px;padding:7px 13px}
   .ham{display:flex}
-  .hdr-ph{font-size:16px}
-  /* Hero: clear header */
-  #hero{padding-top:70px}
-  .h-wrap{padding:44px 20px 40px}
-  .sec{padding:56px 20px}
-  .bk-cols,.lm-wrap{grid-template-columns:1fr;gap:30px}
-  /* Lead magnet: image on top */
+  .btn-cb{padding:9px 16px;font-size:13px}
+  /* Hero */
+  #hero{padding-top:64px;min-height:100svh}
+  .h-wrap{padding:38px 18px 36px}
+  .h-stats{gap:14px;margin-top:32px;padding-top:22px;flex-wrap:wrap}
+  .h-st .num{font-size:26px}
+  /* Sections */
+  .sec{padding:52px 18px}
+  .month-section{padding:0 18px 52px;overflow-x:auto}
+  /* Grids → 1 col */
+  .bk-cols,.lm-wrap,.sm3,.about-cols{grid-template-columns:1fr;gap:24px}
   .lm-wrap .fi.sl{order:1}
   .lm-wrap .fi.sr{order:2}
-  .sm3{grid-template-columns:1fr;gap:28px}
-  .sm3-r{gap:18px}
   .pg,.vt-grid{grid-template-columns:1fr}
-  .cr-grid{grid-template-columns:1fr}
-  .cw,.quiz-wrap{padding:28px 18px}
-  .pf-block{padding:24px}
-  .fcta{padding:36px 20px}
-  .h-stats{gap:18px}
-  .creds,.why-grid{grid-template-columns:1fr 1fr}
-  .creds-row{grid-template-columns:1fr 1fr}
   .cloud-grid{grid-template-columns:1fr}
+  .creds,.creds-row,.why-grid{grid-template-columns:1fr 1fr}
+  .cr-grid{grid-template-columns:1fr}
   .quiz-opts{grid-template-columns:1fr 1fr}
-  .qr-grid{grid-template-columns:1fr}
-  /* Month grid: horizontal scroll — all 12 in one row */
-  .month-section{padding:0 20px 56px;overflow-x:auto}
-  .months-grid{grid-template-columns:repeat(12,1fr);min-width:680px;gap:5px}
-  /* Energy flow: 2x2 grid on mobile */
+  .qr-grid{grid-template-columns:1fr 1fr}
+  /* Smartphone 3-col → 1 col */
+  .sm3{gap:24px}
+  .sm3-r{gap:14px}
+  .phone-wrap{animation:none}
+  /* Month: horizontal scroll, all 12 in row */
+  .months-grid{grid-template-columns:repeat(12,1fr);min-width:660px;gap:5px}
+  /* Energy flow: 2×2 */
   .eflow{display:grid;grid-template-columns:1fr 1fr;border-radius:14px;overflow:hidden}
   .ef-arrow{display:none}
-  .ef-item{padding:20px 12px;border:1px solid var(--border)}
-  .ab-full img{height:260px}
-  /* Float buttons mobile */
-  .float-call{display:flex;bottom:20px;right:20px;width:52px;height:52px}
+  .ef-item{padding:18px 10px;border:1px solid var(--border)}
+  .ef-icon{font-size:26px;margin-bottom:7px}
+  .ef-label{font-size:12px}
+  .ef-sub{font-size:11px}
+  /* About */
+  .ab-full img{height:230px}
+  .ab-full-overlay{padding:20px}
+  .ab-full-overlay h2{font-size:22px}
+  /* Quiz */
+  .quiz-wrap{padding:24px 16px;border-radius:20px}
+  /* Process */
+  .timeline{padding-left:22px}
+  .tl-item{padding:0 0 28px 36px}
+  .pf-block{flex-direction:column;padding:22px;gap:16px}
+  .fi-form{flex-direction:column}
+  .fi-form input{width:100%}
+  /* FAQ */
+  .faq-list{margin-top:28px}
+  /* Footer */
+  .fcta{padding:32px 18px;border-radius:18px}
+  .ff{flex-direction:column}
+  .ff input,.ff button{width:100%}
+  footer{padding:24px 18px}
+  .fnav{gap:10px}
+  /* Float buttons */
   .float-ask{display:none}
-  .float-q-mob{display:flex;bottom:20px;left:20px}
-  .stt{bottom:88px;right:72px}
+  .float-call{display:flex;bottom:18px;right:18px;width:52px;height:52px;font-size:22px}
+  .float-q-mob{display:flex;bottom:18px;left:18px;padding:12px 16px;font-size:13px}
+  .stt{bottom:86px;right:16px}
 }
-@media(max-width:500px){
-  .h-btns{flex-direction:column}
-  .hdr-r .hdr-ph{display:none}
-  .why-grid{grid-template-columns:1fr 1fr}
+
+/* ══════════════════════════════════════
+   SMALL PHONE  ≤ 600px
+══════════════════════════════════════ */
+@media(max-width:600px){
+  .hdr-top{padding:10px 14px}
+  .logo-tx{font-size:18px}
+  .logo-ic{width:32px;height:32px;font-size:15px}
+  .btn-cb{display:none}
+  .hdr-r .hdr-ph{font-size:15px}
+  /* Hero */
+  .h-wrap{padding:30px 14px 28px}
+  .h-badge{font-size:12px;padding:6px 14px}
+  .h-btns{flex-direction:column;gap:10px}
+  .h-btns .bp,.h-btns .bs{width:100%;justify-content:center;font-size:14px;padding:13px 20px}
+  .h-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+  .h-st .num{font-size:24px}
+  .h-st .lbl{font-size:11px}
+  /* Sections */
+  .sec{padding:44px 14px}
+  .month-section{padding:0 14px 44px}
+  /* Cloud cards → 1 col */
   .cloud-grid{grid-template-columns:1fr}
-  .quiz-opts{grid-template-columns:1fr 1fr}
+  /* Split photo → 1 col */
+  .split-photo{grid-template-columns:1fr}
+  .split-photo .sp-side{height:200px}
+  /* Conclusion block */
+  .bk-conclusion{padding:18px 14px}
+  /* Quiz */
+  .quiz-wrap{padding:20px 12px;border-radius:16px}
+  .quiz-opts{grid-template-columns:1fr 1fr;gap:8px}
+  .qo{padding:12px 8px}
+  .qo-ic{font-size:22px}
+  .qo-tx{font-size:12px}
+  .qr-grid{grid-template-columns:1fr}
+  /* Why cards 1×1 on very small */
+  .why-grid{grid-template-columns:1fr 1fr}
+  .wc{height:130px}
+  /* Portfolio 1 col */
+  .pg{grid-template-columns:1fr}
+  /* Testimonials 1 col */
+  .vt-grid{grid-template-columns:1fr}
+  /* About */
+  .ab-full img{height:200px}
+  .creds-row,.creds{grid-template-columns:1fr 1fr}
+  /* Smartphone phone smaller */
+  .pf{width:220px;height:450px;border-radius:32px}
+  /* Process */
+  .timeline{padding-left:16px}
+  .tl-item{padding:0 0 22px 28px}
+  .tl-num{width:32px;height:32px;font-size:12px;left:-15px}
+  .tl-head h4{font-size:14px}
+  .tl-card{padding:16px 14px}
+  /* Footer form */
+  .fcta{padding:28px 14px}
+  footer{padding:20px 14px}
+  .fnav{gap:8px;justify-content:flex-start}
+  .fnav a{font-size:13px}
+  /* Buttons */
+  .bp,.bs{padding:12px 20px;font-size:14px}
+}
+
+/* ══════════════════════════════════════
+   EXTRA SMALL  ≤ 420px
+══════════════════════════════════════ */
+@media(max-width:420px){
+  .hdr-top{padding:9px 12px}
+  .hdr-r .hdr-ph{display:none}
+  .h-wrap{padding:24px 12px 22px}
+  .sec{padding:36px 12px}
+  .month-section{padding:0 12px 36px}
+  .quiz-opts{grid-template-columns:1fr 1fr;gap:6px}
+  .qo{padding:10px 6px;border-radius:10px}
+  .qo-ic{font-size:20px}
+  .qo-tx{font-size:11px}
+  .wc{height:120px}
+  .wc-back p{font-size:11px}
+  .pf{width:200px;height:410px;border-radius:28px}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .creds-row,.creds{grid-template-columns:1fr 1fr}
+  .cloud-pct{font-size:28px}
+  .cloud-icon{font-size:32px}
+  .eflow{grid-template-columns:1fr 1fr}
+  .fcta{border-radius:14px}
+  .float-q-mob{font-size:12px;padding:11px 13px}
+  .float-call{width:48px;height:48px;font-size:20px;bottom:16px;right:16px}
+  .float-q-mob{bottom:16px;left:16px}
+  .stt{bottom:80px}
 }
 </style>
 </head>
