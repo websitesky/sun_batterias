@@ -461,6 +461,14 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
 /* ── MOBILE FLOAT BUTTONS ── */
 .float-q-mob{display:none;position:fixed;bottom:24px;left:24px;z-index:1500;background:var(--grad);border:none;border-radius:50px;padding:14px 20px;color:#000;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 4px 20px rgba(255,215,0,.55);transition:.3s;white-space:nowrap}
 .float-q-mob:hover{transform:scale(1.06);box-shadow:0 6px 32px rgba(255,215,0,.8)}
+.fc-txt{display:none}
+/* Month scroll hint */
+.month-scroll-hint{display:none;align-items:center;justify-content:center;gap:8px;color:var(--t2);font-size:13px;font-weight:600;margin-top:14px;animation:scrollHint 1.5s ease-in-out infinite}
+@keyframes scrollHint{0%,100%{opacity:.5;transform:translateX(0)}50%{opacity:1;transform:translateX(5px)}}
+.month-scroll-hint::before{content:'←';color:var(--y);font-size:16px;animation:scrollHint 1.5s ease-in-out infinite reverse}
+.month-scroll-hint::after{content:'→';color:var(--y);font-size:16px}
+/* Lead magnet mobile book copy */
+.lm-book-mob{display:none;margin-bottom:20px}
 
 /* ══════════════════════════════════════
    TABLET  ≤ 1024px
@@ -488,7 +496,8 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
   .hdr-nav.open{display:flex;flex-wrap:wrap;gap:6px;padding:12px 18px 16px}
   .hdr-nav a{font-size:13px;padding:7px 13px}
   .ham{display:flex}
-  .btn-cb{padding:9px 16px;font-size:13px}
+  .hdr-ph{display:none}
+  .btn-cb{display:none}
   /* Hero */
   #hero{padding-top:64px;min-height:100svh}
   .h-wrap{padding:38px 18px 36px}
@@ -499,8 +508,8 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
   .month-section{padding:0 18px 52px;overflow-x:auto}
   /* Grids → 1 col */
   .bk-cols,.lm-wrap,.sm3,.about-cols{grid-template-columns:1fr;gap:24px}
-  .lm-wrap .fi.sl{order:1}
-  .lm-wrap .fi.sr{order:2}
+  .lm-wrap .fi.sl{display:none}
+  .lm-wrap .fi.sr{order:1}
   .pg,.vt-grid{grid-template-columns:1fr}
   .cloud-grid{grid-template-columns:1fr}
   .creds,.creds-row,.why-grid{grid-template-columns:1fr 1fr}
@@ -542,9 +551,10 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
   .fnav{gap:10px}
   /* Float buttons */
   .float-ask{display:none}
-  .float-call{display:flex;bottom:18px;right:18px;width:52px;height:52px;font-size:22px}
-  .float-q-mob{display:flex;bottom:18px;left:18px;padding:12px 16px;font-size:13px}
-  .stt{bottom:86px;right:16px}
+  .float-call{display:flex;bottom:88px;right:16px;width:auto;border-radius:50px;padding:12px 18px;gap:7px;font-size:20px;animation:pulse 2s ease-in-out infinite}
+  .fc-txt{display:inline;font-size:13px;font-weight:700;color:#000}
+  .float-q-mob{display:flex;bottom:18px;left:50%;transform:translateX(-50%);padding:14px 28px;font-size:14px;border-radius:50px}
+  .stt{bottom:156px;right:16px}
 }
 
 /* ══════════════════════════════════════
@@ -557,13 +567,18 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
   .btn-cb{display:none}
   .hdr-r .hdr-ph{font-size:15px}
   /* Hero */
-  .h-wrap{padding:30px 14px 28px}
+  #hero{align-items:flex-start}
+  .h-wrap{padding:20px 14px 36px}
   .h-badge{font-size:12px;padding:6px 14px}
   .h-btns{flex-direction:column;gap:10px}
   .h-btns .bp,.h-btns .bs{width:100%;justify-content:center;font-size:14px;padding:13px 20px}
-  .h-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+  .h-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
   .h-st .num{font-size:24px}
   .h-st .lbl{font-size:11px}
+  /* Month scroll hint */
+  .month-scroll-hint{display:flex}
+  /* Lead magnet mobile book */
+  .lm-book-mob{display:block}
   /* Sections */
   .sec{padding:44px 14px}
   .month-section{padding:0 14px 44px}
@@ -630,10 +645,10 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
   .cloud-icon{font-size:32px}
   .eflow{grid-template-columns:1fr 1fr}
   .fcta{border-radius:14px}
-  .float-q-mob{font-size:12px;padding:11px 13px}
-  .float-call{width:48px;height:48px;font-size:20px;bottom:16px;right:16px}
-  .float-q-mob{bottom:16px;left:16px}
-  .stt{bottom:80px}
+  .float-call{bottom:82px;right:14px;padding:10px 14px;font-size:18px}
+  .fc-txt{font-size:12px}
+  .float-q-mob{bottom:16px;padding:12px 22px;font-size:13px}
+  .stt{bottom:148px;right:14px}
 }
 </style>
 </head>
@@ -770,6 +785,7 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
     <p style="color:var(--t2);text-align:center;max-width:520px;margin:0 auto 32px;font-size:15px">Відсоток від максимальної потужності. Навіть у найкоротші зимові дні — базові потреби покриті.</p>
   </div>
   <div class="months-grid" id="mc-grid"></div>
+  <div class="month-scroll-hint">Гортай місяці</div>
   <div class="month-note fi">
     <strong>★ Грудень (28%)</strong> — покриває: освітлення, зарядки, роутер, телевізор. Акумулятор компенсує нічний час.
   </div>
@@ -934,6 +950,17 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
       </div>
     </div>
     <div class="fi sr">
+      <div class="lm-book-mob">
+        <div style="position:relative;border-radius:8px 18px 18px 8px;overflow:hidden;max-width:280px;margin:0 auto">
+          <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=80" alt="Безкоштовний чек-лист" style="width:100%;height:180px;object-fit:cover;display:block;filter:brightness(.55)">
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,8,.3),rgba(8,8,8,.85));display:flex;flex-direction:column;justify-content:flex-end;padding:18px 16px">
+            <div style="font-size:9px;color:var(--y);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;opacity:.85">Безкоштовний чек-лист</div>
+            <div style="font-size:15px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:10px">10 питань перед підписанням договору</div>
+            <div style="background:var(--grad);border-radius:50px;padding:5px 14px;font-size:11px;font-weight:700;color:#000;display:inline-block;width:fit-content">PDF · Безкоштовно</div>
+          </div>
+          <div style="position:absolute;top:0;left:0;bottom:0;width:8px;background:var(--grad)"></div>
+        </div>
+      </div>
       <div class="lm-form">
         <div class="chip">Подарунок</div>
         <h3>Не підписуйте договір без цього чек-листу</h3>
@@ -1199,7 +1226,7 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
 <button class="float-q-mob" onclick="openModal('consult')">✉️ Запитання</button>
 
 <!-- FLOATING: Call button (mobile bottom-right) -->
-<a href="tel:+380671234567" class="float-call" title="Зателефонувати">📞</a>
+<a href="tel:+380671234567" class="float-call" title="Зателефонувати">📞 <span class="fc-txt">Зателефонувати</span></a>
 
 <!-- MODAL -->
 <div class="mo" id="mo" onclick="moOut(event)">
