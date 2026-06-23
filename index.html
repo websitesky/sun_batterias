@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SunPower — Сонячні станції під ключ</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080808;--bg2:#111111;--bgc:#171717;
+  --y:#FFD700;--o:#FF8C00;
+  --grad:linear-gradient(135deg,#FFD700,#FF8C00);
+  --t1:#FFFFFF;--t2:#999;--t3:#444;
+  --border:rgba(255,255,255,0.07);
+  --glow:0 0 28px rgba(255,215,0,0.38);
+  /* light section */
+  --lb:#F5F2EC;--lt1:#111;--lt2:#666;--lborder:rgba(0,0,0,.09);--lcard:#fff
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);overflow-x:hidden;line-height:1.6;font-weight:500}
+
+/* ── HEADER ── */
+#hdr{position:fixed;top:0;width:100%;z-index:2000;background:rgba(8,8,8,.82);backdrop-filter:blur(22px);border-bottom:1px solid var(--border);transition:.3s}
+#hdr.s{background:rgba(8,8,8,.98)}
+.hdr-top{padding:14px 48px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-ic{width:38px;height:38px;background:var(--grad);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:var(--glow)}
+.logo-tx{font-size:21px;font-weight:800;color:#fff}
+.logo-tx span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hdr-r{display:flex;align-items:center;gap:18px}
+.hdr-ph{font-size:19px;font-weight:700;color:#fff;text-decoration:none;transition:.25s}
+.hdr-ph:hover{color:var(--y)}
+.btn-cb{padding:10px 24px;background:var(--grad);border:none;border-radius:50px;color:#000;font-weight:700;font-size:14px;cursor:pointer;box-shadow:var(--glow);transition:.3s;white-space:nowrap}
+.btn-cb:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 0 40px rgba(255,215,0,.7);filter:brightness(1.1)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.ham span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* NAV */
+.hdr-nav{border-top:1px solid var(--border);padding:10px 48px;display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none}
+.hdr-nav::-webkit-scrollbar{display:none}
+.hdr-nav a{color:var(--t2);text-decoration:none;font-size:13px;font-weight:500;padding:6px 14px;border-radius:50px;white-space:nowrap;transition:.25s;border:1px solid transparent}
+.hdr-nav a:hover,.hdr-nav a.active{color:var(--y);border-color:rgba(255,215,0,.3);background:rgba(255,215,0,.06)}
+
+/* ── BUTTONS ── */
+.bp{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;background:var(--grad);border:none;border-radius:50px;color:#000;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;box-shadow:var(--glow);transition:.3s}
+.bp:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 0 50px rgba(255,215,0,.75);filter:brightness(1.1)}
+.bs{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;background:transparent;border:2px solid rgba(255,215,0,.4);border-radius:50px;color:#fff;font-weight:600;font-size:15px;cursor:pointer;text-decoration:none;transition:.3s}
+.bs:hover{border-color:var(--y);color:var(--y);transform:translateY(-3px);background:rgba(255,215,0,.07)}
+.bd{padding:14px 28px;background:#111;border:none;border-radius:50px;color:var(--y);font-weight:700;font-size:15px;cursor:pointer;white-space:nowrap;transition:.3s;border:1px solid var(--y)}
+.bd:hover{background:var(--y);color:#000;transform:translateY(-2px);box-shadow:var(--glow)}
+/* Light-section button outlines */
+.bp-dark{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;background:var(--grad);border:none;border-radius:50px;color:#000;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;box-shadow:0 0 20px rgba(255,215,0,.3);transition:.3s}
+.bp-dark:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 0 44px rgba(255,215,0,.65);filter:brightness(1.08)}
+.bs-dark{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;background:transparent;border:2px solid rgba(0,0,0,.25);border-radius:50px;color:#111;font-weight:600;font-size:15px;cursor:pointer;text-decoration:none;transition:.3s}
+.bs-dark:hover{border-color:#111;background:rgba(0,0,0,.06);transform:translateY(-2px)}
+
+/* ── ANIMATIONS ── */
+@keyframes bgFade{0%,25%{opacity:1;transform:scale(1)}33%,96%{opacity:0;transform:scale(1.06)}100%{opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 18px rgba(255,215,0,.3)}50%{box-shadow:0 0 44px rgba(255,215,0,.8)}}
+@keyframes partFloat{0%{opacity:0;transform:translateY(110vh) scale(0)}10%{opacity:.35}90%{opacity:.35}100%{opacity:0;transform:translateY(-60px) scale(1.2)}}
+@keyframes barGrow{from{height:0}to{height:var(--h)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes popIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+@keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
+
+.fi{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
+.fi.v{opacity:1;transform:translateY(0)}
+.fi.sl{opacity:0;transform:translateX(-48px);transition:opacity .7s ease,transform .7s ease}
+.fi.sl.v{opacity:1;transform:translateX(0)}
+.fi.sr{opacity:0;transform:translateX(48px);transition:opacity .7s ease,transform .7s ease}
+.fi.sr.v{opacity:1;transform:translateX(0)}
+.fi.d1{transition-delay:.1s}.fi.d2{transition-delay:.2s}.fi.d3{transition-delay:.3s}
+.fi.d4{transition-delay:.4s}.fi.d5{transition-delay:.5s}.fi.d6{transition-delay:.6s}.fi.d7{transition-delay:.7s}
+
+/* ── SECTION COMMON ── */
+.sec{padding:90px 48px;max-width:1280px;margin:0 auto}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--y);margin-bottom:14px}
+.chip::before{content:'';width:20px;height:2px;background:var(--grad)}
+.chip.dk{color:var(--o)}
+.chip.dk::before{background:var(--grad)}
+h2.st{font-size:clamp(26px,4vw,48px);font-weight:800;line-height:1.2;margin-bottom:12px}
+h2.st span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{font-size:17px;color:var(--t2);line-height:1.7;max-width:560px}
+
+/* ── LIGHT SECTIONS ── */
+.ls{background:var(--lb);color:var(--lt1)}
+.ls h2.st,.ls h3,.ls h4{color:var(--lt1)}
+.ls .sub,.ls p{color:var(--lt2)}
+.ls .chip{color:var(--o)}
+.ls .border-el{border-color:var(--lborder)}
+.ls .fi-card{background:var(--lcard);border:1px solid var(--lborder);box-shadow:0 2px 20px rgba(0,0,0,.06)}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:100px;max-width:100%}
+.hvid-wrap{position:absolute;inset:0;overflow:hidden}
+.hv{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;animation:bgFade 18s infinite}
+.hv1{background-image:url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=85');animation-delay:0s;opacity:1}
+.hv2{background-image:url('https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=1920&q=85');animation-delay:6s}
+.hv3{background-image:url('https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?w=1920&q=85');animation-delay:12s}
+.hv{filter:brightness(.72)}
+.h-ov{position:absolute;inset:0;background:linear-gradient(105deg,rgba(8,8,8,.62) 0%,rgba(8,8,8,.32) 55%,rgba(8,8,8,.08) 100%)}
+.h-glow{position:absolute;top:-150px;right:-150px;width:620px;height:620px;background:radial-gradient(circle,rgba(255,215,0,.15) 0%,transparent 70%);animation:float 9s ease-in-out infinite;pointer-events:none}
+.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.particle{position:absolute;border-radius:50%;background:var(--y);animation:partFloat linear infinite}
+.h-wrap{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:40px 48px;width:100%}
+.h-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.3);border-radius:50px;font-size:13px;font-weight:600;color:var(--y);margin-bottom:24px;animation:fadeUp .8s ease forwards}
+.h-dot{width:6px;height:6px;background:var(--y);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+.h-title{font-size:clamp(32px,5.5vw,66px);font-weight:900;line-height:1.1;margin-bottom:22px;max-width:820px;animation:fadeUp .8s ease .2s forwards;opacity:0}
+.h-title .ac{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-top:6px}
+.h-ac{font-size:clamp(20px,3vw,36px);font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:24px;animation:fadeUp .8s ease .35s forwards;opacity:0;max-width:820px;line-height:1.2}
+.h-sub{font-size:clamp(15px,1.6vw,18px);color:var(--t2);max-width:520px;margin-bottom:34px;line-height:1.7;animation:fadeUp .8s ease .45s forwards;opacity:0}
+.h-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .8s ease .6s forwards;opacity:0}
+.h-stats{display:flex;gap:36px;margin-top:50px;padding-top:30px;border-top:1px solid var(--border);animation:fadeUp .8s ease .8s forwards;opacity:0;flex-wrap:wrap}
+.h-st .num{font-size:32px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.h-st .lbl{font-size:12px;color:var(--t2);margin-top:3px}
+
+/* ── BLACKOUT ── */
+.bk-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.split-photo{display:grid;grid-template-columns:1fr 1fr;border-radius:18px;overflow:hidden;margin-bottom:18px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.sp-side{position:relative}
+.sp-side img{width:100%;height:300px;object-fit:cover;display:block}
+.sp-tag{position:absolute;bottom:0;left:0;right:0;padding:10px 14px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px}
+.sp-tag.cloudy{background:linear-gradient(to top,rgba(60,80,110,.9),transparent)}
+.sp-tag.sunny{background:linear-gradient(to top,rgba(180,120,0,.85),transparent)}
+.sp-divider{position:absolute;top:0;bottom:0;width:3px;background:#fff;left:50%;transform:translateX(-50%);z-index:5;box-shadow:0 0 10px rgba(0,0,0,.4)}
+.split-wrap{position:relative;margin-bottom:28px}
+.split-caption{text-align:center;font-size:15px;color:var(--t2);margin-top:14px;line-height:1.6}
+.split-caption span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700}
+.bk-single{max-width:900px;margin:0 auto}
+.cloudy-card{background:var(--bgc);border:1px solid var(--border);border-radius:16px;padding:22px;margin-bottom:16px}
+.cloudy-card h4{font-size:15px;font-weight:700;color:var(--t1);margin-bottom:7px}
+.cloudy-card p{font-size:14px;color:var(--t2);line-height:1.65}
+.batt-card{background:linear-gradient(135deg,rgba(255,215,0,.08),rgba(255,140,0,.05));border:1px solid rgba(255,140,0,.25);border-radius:16px;padding:22px;margin-bottom:16px}
+.batt-card h4{font-size:15px;font-weight:700;color:var(--o);margin-bottom:8px}
+.batt-card p{font-size:14px;color:var(--t2);line-height:1.6}
+.batt-steps{list-style:none;margin-top:12px}
+.batt-steps li{font-size:13px;padding:5px 0;display:flex;align-items:center;gap:9px;color:var(--t1)}
+.batt-steps li::before{content:'→';color:var(--o);font-weight:700;flex-shrink:0}
+
+/* ── MONTH CARDS ── */
+.month-section{padding:0 48px 90px;max-width:1280px;margin:0 auto}
+.months-heading{text-align:center;margin-bottom:36px}
+.months-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:7px;margin-bottom:28px}
+.mc{background:var(--bgc);border:1px solid var(--border);border-radius:10px;padding:10px 4px 12px;text-align:center;transition:.3s;cursor:default}
+.mc:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(255,140,0,.18);border-color:rgba(255,140,0,.35)}
+.mc .mc-icon{font-size:16px;margin-bottom:5px}
+.mc .mc-month{font-size:10px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.3px;margin-bottom:7px}
+.mc-bar-wrap{width:20px;height:56px;background:rgba(255,255,255,.07);border-radius:4px;margin:0 auto 7px;display:flex;align-items:flex-end;overflow:hidden}
+.mc-bar{width:100%;border-radius:4px;background:var(--grad);transition:height 1.5s ease}
+.mc .mc-pct{font-size:14px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mc.dim .mc-bar{background:linear-gradient(to top,#555,#777)}
+.mc.dim .mc-pct{background:none;-webkit-text-fill-color:#666;color:#666}
+.month-note{text-align:center;font-size:14px;color:var(--t2);padding:16px 24px;background:rgba(255,140,0,.07);border:1px solid rgba(255,140,0,.2);border-radius:12px;max-width:600px;margin:0 auto}
+.month-note strong{color:var(--o)}
+
+/* ── SAFE MOUNTING ── */
+.mount-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.mount-photos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mount-photos img{width:100%;height:175px;object-fit:cover;border-radius:12px;display:block;transition:.4s}
+.mount-photos img:hover{transform:scale(1.03)}
+.mount-photos img:first-child{grid-column:1/-1;height:210px}
+.mount-pts{list-style:none;margin-top:24px}
+.mount-pts li{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--border)}
+.mount-pts li:last-child{border-bottom:none}
+.mpt-ic{width:42px;height:42px;background:rgba(255,215,0,.09);border:1px solid rgba(255,215,0,.2);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.mpt-tx h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.mpt-tx p{font-size:13px;color:var(--t2);line-height:1.6}
+.vid-wrap{margin-top:22px;border-radius:18px;overflow:hidden;position:relative;cursor:pointer;border:1px solid var(--border)}
+.vid-thumb{width:100%;height:190px;object-fit:cover;display:block;opacity:.65;transition:.3s}
+.vid-wrap:hover .vid-thumb{opacity:.85}
+.vid-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(255,215,0,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;transition:.3s;box-shadow:0 0 28px rgba(255,215,0,.55)}
+.vid-wrap:hover .vid-play{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 0 48px rgba(255,215,0,.85)}
+.vid-label{position:absolute;bottom:12px;left:12px;font-size:12px;font-weight:600;color:#fff;background:rgba(0,0,0,.75);padding:5px 12px;border-radius:50px}
+
+/* ── CALCULATOR ── */
+.cw{max-width:860px;margin:0 auto;background:var(--bgc);border:1px solid var(--border);border-radius:28px;padding:52px;position:relative;overflow:hidden}
+.cw::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(255,140,0,.09) 0%,transparent 70%)}
+.sl-lbl{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.sl-lbl span{font-size:15px;color:var(--t2)}
+.sv{font-size:22px;font-weight:800;color:var(--o)}
+input[type=range]{width:100%;-webkit-appearance:none;height:6px;background:rgba(255,255,255,.1);border-radius:3px;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;background:var(--grad);border-radius:50%;cursor:pointer;box-shadow:0 0 14px rgba(255,140,0,.6);transition:.3s}
+input[type=range]::-webkit-slider-thumb:hover{box-shadow:0 0 28px rgba(255,140,0,.9)}
+input[type=range]::-webkit-slider-runnable-track{background:linear-gradient(to right,var(--o) var(--prog,40%),rgba(0,0,0,.1) var(--prog,40%));border-radius:3px}
+.cr-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0}
+.crc{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:16px;padding:24px;text-align:center;transition:.3s}
+.crc:hover{border-color:rgba(255,140,0,.35);background:rgba(255,140,0,.07)}
+.crn{font-size:42px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:6px}
+.crl{font-size:13px;color:var(--t2)}
+.ec-box{background:linear-gradient(135deg,rgba(255,215,0,.1),rgba(255,140,0,.07));border:1px solid rgba(255,140,0,.2);border-radius:12px;padding:16px 20px;margin-bottom:22px;display:flex;align-items:center;gap:12px}
+.ec-box .ecn{font-size:20px;font-weight:800;color:var(--o)}
+.calc-form{display:flex;gap:11px;flex-wrap:wrap}
+.ci-d{flex:1;min-width:190px;padding:14px 20px;background:rgba(255,255,255,.05);border:1.5px solid var(--border);border-radius:50px;color:#fff;font-size:15px;outline:none;transition:.3s}
+.ci-d:focus{border-color:var(--o);background:rgba(255,215,0,.05)}
+.ci-d::placeholder{color:#555}
+
+/* ── PORTFOLIO ── */
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+.pc{background:var(--bgc);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:.4s;cursor:pointer}
+.pc:hover{transform:translateY(-7px);border-color:rgba(255,215,0,.3);box-shadow:0 18px 55px rgba(0,0,0,.5),0 0 36px rgba(255,215,0,.1)}
+.pc-iw{overflow:hidden;position:relative}
+.pc img{width:100%;height:195px;object-fit:cover;display:block;transition:.5s}
+.pc:hover img{transform:scale(1.06)}
+.pc-badge{position:absolute;top:11px;left:11px;padding:4px 11px;background:rgba(0,0,0,.8);border:1px solid rgba(255,215,0,.4);border-radius:50px;font-size:11px;font-weight:600;color:var(--y)}
+.pc-info{padding:18px}
+.pc-info h3{font-size:15px;font-weight:700;margin-bottom:10px}
+.fr{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px}
+.fr:last-of-type{border-bottom:none}
+.fl{color:var(--t2)}.fv{font-weight:600}
+.fv.g{color:#22c55e}.fv.y{color:var(--y)}
+
+/* ── LEAD MAGNET ── */
+.lm-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+.lm-pdf{position:relative;display:flex;justify-content:center}
+.lm-book{width:260px;background:linear-gradient(145deg,#1a1a1a,#2e2e2e);border-radius:8px 18px 18px 8px;padding:40px 32px;box-shadow:-8px 8px 40px rgba(0,0,0,.35),6px 6px 20px rgba(0,0,0,.15);transform:rotate(-3deg);transition:.4s;position:relative;overflow:hidden;animation:float 7s ease-in-out infinite}
+.lm-book::before{content:'';position:absolute;left:0;top:0;bottom:0;width:10px;background:var(--grad);border-radius:8px 0 0 8px}
+.lm-book:hover{transform:rotate(0deg) scale(1.04)}
+.lm-book .lb-top{font-size:10px;color:#FFD700;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;opacity:.8}
+.lm-book h4{font-size:18px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:16px}
+.lm-book .lb-lines{list-style:none}
+.lm-book .lb-lines li{font-size:11px;color:#ccc;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:6px}
+.lm-book .lb-lines li::before{content:'✓';color:var(--y);font-size:10px;flex-shrink:0}
+.lm-book .lb-badge{margin-top:18px;background:var(--grad);border-radius:50px;padding:7px 16px;font-size:12px;font-weight:700;color:#000;display:inline-block;text-align:center}
+.lm-glow{position:absolute;width:220px;height:220px;background:radial-gradient(circle,rgba(255,215,0,.2),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;pointer-events:none}
+.lm-form{background:var(--bgc);border:1px solid var(--border);border-radius:22px;padding:36px}
+.lm-form h3{font-size:22px;font-weight:800;color:var(--t1);margin-bottom:8px}
+.lm-form p{font-size:14px;color:var(--t2);margin-bottom:22px;line-height:1.6}
+.lm-input{width:100%;padding:13px 18px;background:rgba(255,255,255,.05);border:1.5px solid var(--border);border-radius:12px;color:#fff;font-size:15px;outline:none;margin-bottom:11px;transition:.3s;font-family:inherit}
+.lm-input:focus{border-color:var(--o);background:rgba(255,215,0,.04)}
+.lm-input::placeholder{color:#555}
+.lm-note{font-size:12px;color:#aaa;margin-top:10px;text-align:center}
+
+/* ── SMARTPHONE ── */
+.sm-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.phone-wrap{position:relative;display:flex;justify-content:center;animation:float 6s ease-in-out infinite}
+.phone-glow{position:absolute;width:280px;height:280px;background:radial-gradient(circle,rgba(255,215,0,.2),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);z-index:0}
+.pf{width:258px;height:530px;background:#181818;border:3px solid #282828;border-radius:38px;position:relative;overflow:hidden;z-index:1;box-shadow:0 36px 90px rgba(0,0,0,.88),inset 0 1px 0 rgba(255,255,255,.07),0 0 50px rgba(255,215,0,.12)}
+.p-notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:84px;height:22px;background:#000;border-radius:16px;z-index:10}
+.ps{width:100%;height:100%;background:#090909;padding:50px 12px 12px;overflow:hidden}
+.ah{text-align:center;margin-bottom:14px}
+.ah h4{font-size:11px;color:#555;text-transform:uppercase;letter-spacing:1px}
+.ah .pw{font-size:24px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.ah .ps2{font-size:10px;color:#444;margin-top:1px}
+.batt{width:90px;height:90px;margin:0 auto 12px;position:relative}
+.batt svg{transform:rotate(-90deg)}
+.batt-r{fill:none;stroke:rgba(255,255,255,.07);stroke-width:8}
+.batt-f{fill:none;stroke:url(#bg2);stroke-width:8;stroke-linecap:round;stroke-dasharray:251;stroke-dashoffset:75}
+.bp2{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;font-weight:800;color:var(--y)}
+.asg{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:11px}
+.as{background:rgba(255,255,255,.04);border-radius:9px;padding:8px;text-align:center}
+.as .av{font-size:11px;font-weight:700;color:var(--y)}
+.as .al{font-size:8px;color:#444;margin-top:2px}
+.ac{background:rgba(255,255,255,.03);border-radius:9px;padding:8px;height:65px;display:flex;align-items:flex-end;gap:3px}
+.acb{flex:1;background:var(--grad);border-radius:2px;opacity:.8}
+.fl-list{list-style:none;margin-top:22px}
+.fl-list li{display:flex;align-items:flex-start;gap:13px;padding:12px 0;border-bottom:1px solid var(--border)}
+.fl-list li:last-child{border-bottom:none}
+.flic{width:38px;height:38px;background:rgba(255,215,0,.09);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.flt h4{font-size:14px;font-weight:600;margin-bottom:3px}
+.flt p{font-size:13px;color:var(--t2)}
+.turb-card{background:rgba(255,215,0,.06);border:1px solid rgba(255,215,0,.2);border-radius:16px;padding:22px;margin-top:20px}
+.turb-card .tc-head{display:flex;align-items:center;gap:11px;margin-bottom:10px}
+.turb-card .tc-head span{font-size:26px}
+.turb-card .tc-head h4{font-size:16px;font-weight:700;color:var(--y)}
+.turb-card p{font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:12px}
+.turb-list{list-style:none}
+.turb-list li{font-size:13px;padding:4px 0;display:flex;align-items:center;gap:7px}
+.turb-list li::before{content:'✓';color:#22c55e;font-weight:700;flex-shrink:0}
+
+/* ── TESTIMONIALS ── */
+.vt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+.vt-card{background:var(--bgc);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:.4s}
+.vt-card:hover{transform:translateY(-6px);box-shadow:0 14px 44px rgba(0,0,0,.5),0 0 30px rgba(255,140,0,.12);border-color:rgba(255,140,0,.3)}
+.vt-vid{position:relative;cursor:pointer}
+.vt-vid img{width:100%;height:170px;object-fit:cover;display:block;opacity:.75;transition:.3s}
+.vt-card:hover .vt-vid img{opacity:.9}
+.vt-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;background:rgba(255,140,0,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;transition:.3s;box-shadow:0 0 22px rgba(255,140,0,.55)}
+.vt-card:hover .vt-play{transform:translate(-50%,-50%) scale(1.1)}
+.vt-info{padding:16px}
+.vt-stars{color:var(--o);font-size:13px;margin-bottom:7px;letter-spacing:2px}
+.vt-quote{font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:10px;font-style:italic}
+.vt-name{font-size:14px;font-weight:700;color:var(--t1)}
+.vt-meta{font-size:12px;color:#aaa;margin-top:2px}
+
+/* ── ABOUT ── */
+.ab-img{border-radius:20px;overflow:hidden;position:relative}
+.ab-img img{width:100%;height:420px;object-fit:cover;display:block;filter:brightness(.92)}
+.ab-gar{position:absolute;bottom:18px;left:18px;right:18px;background:rgba(10,10,10,.88);backdrop-filter:blur(14px);border:1px solid rgba(255,140,0,.35);border-radius:12px;padding:16px;display:flex;align-items:center;gap:12px}
+.ab-gar .gi{font-size:30px}
+.ab-gar h4{font-size:14px;font-weight:700;color:var(--o);margin-bottom:3px}
+.ab-gar p{font-size:12px;color:var(--t2)}
+.about-cols{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.why-label{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--o);margin:28px 0 18px;display:flex;align-items:center;gap:8px}
+.why-label::before{content:'';width:20px;height:2px;background:var(--grad)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+/* 3D flip cards */
+.wc{height:150px;perspective:1000px;cursor:pointer;position:relative}
+.wc-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.4,0,.2,1)}
+.wc:hover .wc-inner{transform:rotateY(180deg)}
+.wc-front,.wc-back{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px}
+.wc-front{background:var(--bgc);border:1px solid var(--border)}
+.wc-front .wi{font-size:26px;margin-bottom:8px}
+.wc-front h4{font-size:13px;font-weight:700;color:var(--t1)}
+.wc-back{background:var(--grad);transform:rotateY(180deg)}
+.wc-back p{font-size:12px;color:#000;line-height:1.5;font-weight:600}
+.creds{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.cc{background:var(--bgc);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;transition:.3s}
+.cc:hover{border-color:rgba(255,140,0,.3);box-shadow:0 4px 20px rgba(255,140,0,.12)}
+.cc .num{font-size:28px;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cc .lbl{font-size:12px;color:var(--t2);margin-top:3px}
+
+/* ── PROCESS TIMELINE ── */
+.timeline{margin-top:50px;position:relative;padding-left:36px}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--y),var(--o),transparent);opacity:.35}
+.tl-item{position:relative;padding:0 0 38px 46px}
+.tl-item:last-child{padding-bottom:0}
+.tl-num{position:absolute;left:-18px;top:0;width:38px;height:38px;background:var(--bgc);border:2px solid var(--y);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--y);transition:.3s}
+.tl-item:hover .tl-num{background:var(--y);color:#000;box-shadow:var(--glow)}
+.tl-card{background:var(--bgc);border:1px solid var(--border);border-radius:16px;padding:22px 26px;transition:.35s}
+.tl-item:hover .tl-card{border-color:rgba(255,215,0,.22);transform:translateX(6px)}
+.tl-head{display:flex;align-items:center;gap:11px;margin-bottom:7px}
+.tl-head .ti{font-size:22px}
+.tl-head h4{font-size:16px;font-weight:700}
+.tl-card p{font-size:14px;color:var(--t2);line-height:1.6}
+.tl-badge{display:inline-block;margin-top:7px;padding:3px 10px;background:rgba(255,215,0,.1);border-radius:50px;font-size:11px;color:var(--y);font-weight:600}
+
+/* ── FAQ ── */
+.faq-list{max-width:760px;margin:46px auto 0}
+.fqi{border:1px solid var(--border);border-radius:13px;margin-bottom:9px;overflow:hidden;transition:.3s;background:var(--bgc)}
+.fqi.op{border-color:rgba(255,140,0,.35)}
+.fqq{padding:19px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:15px;font-weight:600;transition:.2s;color:var(--t1)}
+.fqi.op .fqq{color:var(--o)}
+.fqic{width:27px;height:27px;background:rgba(255,140,0,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--o);flex-shrink:0;transition:.3s}
+.fqi.op .fqic{transform:rotate(45deg);background:var(--o);color:#fff}
+.fqa{padding:0 20px;max-height:0;overflow:hidden;transition:.4s;color:var(--t2);line-height:1.7;font-size:14px}
+.fqi.op .fqa{padding:0 20px 20px;max-height:280px}
+
+/* ── FOOTER CTA ── */
+.fcta{background:var(--bgc);border:1px solid var(--border);border-radius:26px;padding:68px;text-align:center;position:relative;overflow:hidden;max-width:1280px;margin:0 auto}
+.fcta::before{content:'';position:absolute;top:-180px;left:50%;transform:translateX(-50%);width:560px;height:560px;background:radial-gradient(circle,rgba(255,215,0,.07),transparent 70%)}
+.fcta h2{font-size:clamp(22px,3.5vw,42px);font-weight:800;margin-bottom:10px}
+.fcta p{font-size:16px;color:var(--t2);margin-bottom:30px}
+.ff{display:flex;gap:11px;max-width:450px;margin:0 auto;flex-wrap:wrap}
+.ff input{flex:1;min-width:185px;padding:15px 22px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:50px;color:#fff;font-size:15px;outline:none;transition:.3s}
+.ff input:focus{border-color:var(--y)}
+
+/* ── PROCESS FORM ── */
+.pf-block{margin-top:44px;background:var(--grad);border-radius:20px;padding:36px 44px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+.pf-block h3{font-size:22px;font-weight:800;color:#000;flex:1;min-width:200px}
+.fi-form{display:flex;gap:10px;flex:1;min-width:270px}
+.fi-form input{flex:1;padding:14px 20px;border:2px solid rgba(0,0,0,.2);border-radius:50px;background:rgba(255,255,255,.92);color:#000;font-size:15px;font-weight:500;outline:none;transition:.3s}
+.fi-form input:focus{border-color:#000}
+
+/* ── FOOTER ── */
+footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32px 48px;text-align:center}
+.fnav{display:flex;justify-content:center;gap:22px;margin-bottom:16px;flex-wrap:wrap}
+.fnav a{color:var(--t2);text-decoration:none;font-size:14px;transition:.2s}
+.fnav a:hover{color:var(--y)}
+.fcp{font-size:12px;color:var(--t3)}
+
+/* ── MODAL ── */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.86);backdrop-filter:blur(16px);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.3s}
+.mo.on{opacity:1;pointer-events:all}
+.md{background:#1a1a1a;border:1px solid rgba(255,215,0,.22);border-radius:22px;padding:36px;width:90%;max-width:430px;position:relative;transform:scale(.88);transition:.3s}
+.mo.on .md{transform:scale(1)}
+.mc-btn{position:absolute;top:12px;right:12px;width:30px;height:30px;background:rgba(255,255,255,.07);border:none;border-radius:50%;color:#fff;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s}
+.mc-btn:hover{background:rgba(255,255,255,.18)}
+.md h3{font-size:21px;font-weight:700;margin-bottom:5px;color:#fff}
+.md p{color:var(--t2);font-size:14px;margin-bottom:18px}
+.mi{width:100%;padding:13px 17px;background:rgba(255,255,255,.05);border:1.5px solid var(--border);border-radius:11px;color:#fff;font-size:15px;outline:none;margin-bottom:9px;transition:.3s;font-family:inherit;resize:none}
+.mi:focus{border-color:var(--y)}
+.mi::placeholder{color:#555}
+
+/* ── FLOATING BUTTONS ── */
+.float-ask{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:1500;background:var(--grad);border:none;border-radius:12px 0 0 12px;padding:14px 10px;writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg) translateY(50%);color:#000;font-weight:700;font-size:13px;cursor:pointer;box-shadow:-4px 0 20px rgba(255,215,0,.4);letter-spacing:.5px;transition:.3s}
+.float-ask:hover{padding:14px 14px;box-shadow:-4px 0 32px rgba(255,215,0,.7);filter:brightness(1.08)}
+.float-call{display:none;position:fixed;bottom:24px;right:24px;z-index:1500;width:56px;height:56px;background:var(--grad);border:none;border-radius:50%;font-size:24px;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(255,215,0,.55);transition:.3s;text-decoration:none}
+.float-call:hover{transform:scale(1.12);box-shadow:0 6px 32px rgba(255,215,0,.8)}
+
+/* ── CLOUD EFFICIENCY ── */
+.cloud-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+.cloud-card{background:var(--bgc);border:1px solid var(--border);border-radius:18px;padding:28px 22px;text-align:center;transition:.35s}
+.cloud-card:hover{border-color:rgba(255,215,0,.3);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.cloud-icon{font-size:42px;margin-bottom:10px}
+.cloud-pct{font-size:36px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:7px;line-height:1}
+.cloud-card h4{font-size:14px;font-weight:700;margin-bottom:6px}
+.cloud-card p{font-size:13px;color:var(--t2);line-height:1.55;margin-bottom:14px}
+.cloud-bar-wrap{height:8px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
+.cloud-bar{height:100%;background:var(--grad);border-radius:4px;transition:width 1.2s ease}
+.bk-conclusion{background:linear-gradient(135deg,rgba(255,215,0,.08),rgba(255,140,0,.05));border:1px solid rgba(255,215,0,.25);border-radius:16px;padding:24px 32px;text-align:center;margin:28px 0}
+.bk-conclusion p{font-size:16px;line-height:1.7;color:var(--t1)}
+.bk-conclusion span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700}
+
+/* ── ENERGY FLOW ── */
+.eflow{display:flex;align-items:stretch;gap:0;margin-top:28px;border:1px solid var(--border);border-radius:18px;overflow:hidden}
+.ef-item{flex:1;padding:28px 16px;text-align:center;background:var(--bgc);position:relative;transition:.3s}
+.ef-item:hover{background:rgba(255,215,0,.04)}
+.ef-icon{font-size:32px;margin-bottom:10px}
+.ef-label{font-size:14px;font-weight:700;margin-bottom:4px}
+.ef-sub{font-size:12px;color:var(--t2)}
+.ef-arrow{display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--y);padding:0 4px;background:var(--bgc);flex-shrink:0}
+
+/* ── QUIZ ── */
+.quiz-wrap{max-width:860px;margin:0 auto 60px;background:var(--bgc);border:1px solid var(--border);border-radius:28px;padding:52px;position:relative;overflow:hidden}
+.quiz-wrap::before{content:'';position:absolute;top:-80px;left:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(255,215,0,.07),transparent 70%)}
+.quiz-progress{display:flex;gap:6px;margin-bottom:32px}
+.qp-dot{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.1);transition:.4s}
+.qp-dot.done{background:var(--grad)}
+.qp-dot.active{background:rgba(255,215,0,.5)}
+.quiz-step{display:none}.quiz-step.active{display:block}
+.quiz-q{font-size:clamp(18px,2.5vw,26px);font-weight:800;margin-bottom:28px;text-align:center}
+.quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.qo{background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:14px;padding:18px;cursor:pointer;text-align:center;transition:.3s;display:flex;flex-direction:column;align-items:center;gap:8px}
+.qo:hover{border-color:rgba(255,215,0,.5);background:rgba(255,215,0,.06)}
+.qo.sel{border-color:var(--y);background:rgba(255,215,0,.1)}
+.qo-ic{font-size:28px}
+.qo-tx{font-size:14px;font-weight:600}
+.quiz-nav{display:flex;justify-content:space-between;margin-top:24px;align-items:center}
+.q-back{background:none;border:1px solid var(--border);color:var(--t2);padding:10px 20px;border-radius:50px;cursor:pointer;font-size:14px;transition:.3s}
+.q-back:hover{border-color:var(--y);color:var(--y)}
+.quiz-result{text-align:center}
+.qr-badge{display:inline-block;padding:6px 18px;background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.3);border-radius:50px;font-size:13px;font-weight:700;color:var(--y);margin-bottom:18px}
+.qr-power{font-size:56px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:6px}
+.qr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}
+.qrc{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center}
+.qrc .qrn{font-size:24px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.qrc .qrl{font-size:12px;color:var(--t2);margin-top:4px}
+.quiz-cta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+
+/* ── ABOUT FULL-WIDTH ── */
+.ab-full{border-radius:22px;overflow:hidden;position:relative;margin-bottom:44px}
+.ab-full img{width:100%;height:420px;object-fit:cover;display:block;filter:brightness(.75)}
+.ab-full-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.9) 0%,rgba(8,8,8,.3) 60%,transparent 100%);display:flex;align-items:flex-end;padding:36px}
+.ab-full-overlay h2{font-size:clamp(22px,3.5vw,40px);font-weight:800;line-height:1.2}
+.ab-full-overlay h2 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.ab-about-text{max-width:740px;margin:0 auto 36px;text-align:center}
+.ab-about-text p{font-size:16px;color:var(--t2);line-height:1.7}
+.creds-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:800px;margin:0 auto 44px}
+
+/* ── SMARTPHONE 3-COL ── */
+.sm3{display:grid;grid-template-columns:1fr auto 1fr;gap:48px;align-items:center}
+.sm3-l,.sm3-r{display:flex;flex-direction:column}
+.sm3-r{justify-content:space-between}
+
+/* ── SCROLL TOP ── */
+.stt{position:fixed;bottom:90px;right:16px;width:42px;height:42px;background:var(--bgc);border:1px solid var(--border);border-radius:50%;color:var(--y);font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(14px);transition:.3s;z-index:1400}
+.stt.v{opacity:1;transform:translateY(0)}
+.stt:hover{background:var(--y);color:#000;border-color:var(--y)}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:68px;left:50%;transform:translateX(-50%) translateY(16px);background:#16a34a;color:#fff;padding:12px 26px;border-radius:50px;font-weight:600;font-size:14px;z-index:99999;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap}
+
+/* ── MOBILE NAV ── */
+@media(max-width:900px){
+  #hdr.s{padding:11px 20px}
+  .hdr-top{padding:13px 20px}
+  .hdr-nav{padding:10px 20px;display:none}
+  .hdr-nav.open{display:flex;flex-wrap:wrap}
+  .ham{display:flex}
+  .hdr-ph{font-size:16px}
+  .sec{padding:56px 20px}
+  .bk-cols,.lm-wrap{grid-template-columns:1fr;gap:30px}
+  .sm3{grid-template-columns:1fr;gap:28px}
+  .sm3-r{gap:18px}
+  .pg,.vt-grid{grid-template-columns:1fr}
+  .cr-grid{grid-template-columns:1fr}
+  .cw,.quiz-wrap{padding:28px 18px}
+  .pf-block{padding:24px}
+  .fcta{padding:36px 20px}
+  .h-stats{gap:18px}
+  .creds,.why-grid{grid-template-columns:1fr 1fr}
+  .creds-row{grid-template-columns:1fr 1fr}
+  .cloud-grid{grid-template-columns:1fr}
+  .quiz-opts{grid-template-columns:1fr 1fr}
+  .qr-grid{grid-template-columns:1fr}
+  .months-grid{grid-template-columns:repeat(6,1fr)}
+  .month-section{padding:0 20px 56px}
+  .eflow{flex-direction:column}
+  .ef-arrow{transform:rotate(90deg);padding:4px 0}
+  .ab-full img{height:280px}
+  .float-call{display:flex}
+  .float-ask{display:none}
+  .stt{bottom:88px;right:90px}
+}
+@media(max-width:500px){
+  .h-btns{flex-direction:column}
+  .hdr-r .hdr-ph{display:none}
+  .months-grid{grid-template-columns:repeat(4,1fr)}
+  .why-grid{grid-template-columns:1fr}
+  .cloud-grid{grid-template-columns:1fr}
+  .quiz-opts{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="hdr">
+  <div class="hdr-top">
+    <a href="#" class="logo">
+      <div class="logo-ic">☀️</div>
+      <span class="logo-tx">Sun<span>Power</span></span>
+    </a>
+    <nav class="hdr-nav" id="nav">
+      <a href="#bk">Панелі</a>
+      <a href="#quiz">Підбір системи</a>
+      <a href="#quiz">Підбір системи</a>
+      <a href="#port">Кейси</a>
+      <a href="#smart">Смартфон</a>
+      <a href="#test">Відгуки</a>
+      <a href="#about">Про нас</a>
+      <a href="#proc">Етапи</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="hdr-r">
+      <a href="tel:+380671234567" class="hdr-ph">+38 (067) 123-45-67</a>
+      <button class="btn-cb" onclick="openModal('callback')">Замовити дзвінок</button>
+      <button class="ham" id="ham" onclick="toggleNav()" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO (video background + slideshow fallback) -->
+<section id="hero" style="padding:0;max-width:100%">
+  <div class="hvid-wrap">
+    <video id="hero-vid" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;filter:brightness(.72)">
+      <source src="video/310115_medium.mp4" type="video/mp4">
+    </video>
+    <div class="hv hv1"></div>
+    <div class="hv hv2"></div>
+    <div class="hv hv3"></div>
+  </div>
+  <div class="h-ov"></div>
+  <div class="h-glow"></div>
+  <div class="particles" id="pts"></div>
+  <div class="h-wrap">
+    <div class="h-badge"><span class="h-dot"></span>Понад 300 об'єктів по всій Україні</div>
+    <h1 class="h-title">Автономна сонячна<br>станція під ключ</h1>
+    <div class="h-ac">Забудьте про відключення назавжди</div>
+    <p class="h-sub">Проєктування, безпечний монтаж за 3 дні та юридична гарантія на систему 25 років.</p>
+    <div class="h-btns">
+      <a href="#calc" class="bp">⚡ Розрахувати вартість станції</a>
+      <button class="bs" onclick="openModal('consult')">📋 Отримати консультацію</button>
+    </div>
+    <div class="h-stats">
+      <div class="h-st"><div class="num" data-count="300">0</div><div class="lbl">Встановлених станцій</div></div>
+      <div class="h-st"><div class="num">25</div><div class="lbl">Років гарантії</div></div>
+      <div class="h-st"><div class="num">3</div><div class="lbl">Дні монтажу</div></div>
+      <div class="h-st"><div class="num">0₴</div><div class="lbl">За світло після</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLACKOUT (DARK) -->
+<div id="bk">
+<section class="sec">
+  <div class="fi" style="text-align:center;margin-bottom:36px">
+    <h2 class="st" style="text-align:center">Панелі працюють<br><span>навіть у хмарну погоду</span></h2>
+    <p class="sub" style="margin:0 auto;text-align:center">Ефективність залежно від типу хмарності</p>
+  </div>
+
+  <div class="cloud-grid fi">
+    <div class="cloud-card">
+      <div class="cloud-icon">☁️</div>
+      <div class="cloud-pct">60–80%</div>
+      <h4>Легка або мінлива хмарність</h4>
+      <p>Панелі зберігають до 60–80% своєї генерації</p>
+      <div class="cloud-bar-wrap"><div class="cloud-bar" style="width:70%"></div></div>
+    </div>
+    <div class="cloud-card">
+      <div class="cloud-icon">🌫️</div>
+      <div class="cloud-pct">25–40%</div>
+      <h4>Густий туман або середня хмарність</h4>
+      <p>Генерація падає до 25–40% від номіналу</p>
+      <div class="cloud-bar-wrap"><div class="cloud-bar" style="width:32%"></div></div>
+    </div>
+    <div class="cloud-card">
+      <div class="cloud-icon">🌧️</div>
+      <div class="cloud-pct">5–10%</div>
+      <h4>Темні хмари або сильний дощ</h4>
+      <p>Ефективність падає найсильніше — до 5–10% від номіналу</p>
+      <div class="cloud-bar-wrap"><div class="cloud-bar" style="width:7%"></div></div>
+    </div>
+  </div>
+
+  <div class="bk-conclusion fi">
+    <p>Панелі працюють навіть у хмарну погоду, генеруючи від розсіяного світла. <span>Ваш будинок</span> виробляє власну енергію і продає надлишок державі.</p>
+  </div>
+
+  <!-- Energy flow visualization -->
+  <div class="eflow fi">
+    <div class="ef-item">
+      <div class="ef-icon">☀️</div>
+      <div class="ef-label">Вдень панелі генерують</div>
+      <div class="ef-sub">заряджають акумулятор</div>
+    </div>
+    <div class="ef-arrow">→</div>
+    <div class="ef-item">
+      <div class="ef-icon">🔋</div>
+      <div class="ef-label">Ввечері акумулятор</div>
+      <div class="ef-sub">живить будинок</div>
+    </div>
+    <div class="ef-arrow">→</div>
+    <div class="ef-item">
+      <div class="ef-icon">⚡</div>
+      <div class="ef-label">При відключенні мережі</div>
+      <div class="ef-sub">перехід за 0.02 секунди</div>
+    </div>
+    <div class="ef-arrow">→</div>
+    <div class="ef-item">
+      <div class="ef-icon">💰</div>
+      <div class="ef-label">Надлишок продається</div>
+      <div class="ef-sub">по «зеленому» тарифу</div>
+    </div>
+  </div>
+</section>
+
+<!-- MONTH CARDS (DARK) -->
+<div class="month-section">
+  <div class="months-heading fi">
+    <div class="chip" style="justify-content:center">Генерація по місяцях</div>
+    <h2 class="st" style="text-align:center">Скільки генерує станція<br><span>протягом року в Україні</span></h2>
+    <p style="color:var(--t2);text-align:center;max-width:520px;margin:0 auto 32px;font-size:15px">Відсоток від максимальної потужності. Навіть у найкоротші зимові дні — базові потреби покриті.</p>
+  </div>
+  <div class="months-grid" id="mc-grid"></div>
+  <div class="month-note fi">
+    <strong>★ Грудень (28%)</strong> — покриває: освітлення, зарядки, роутер, телевізор. Акумулятор компенсує нічний час.
+  </div>
+</div>
+
+<!-- QUIZ (DARK) -->
+<section class="sec" id="quiz">
+  <div class="fi" style="text-align:center;margin-bottom:36px">
+    <div class="chip" style="justify-content:center">Підбір системи</div>
+    <h2 class="st" style="text-align:center">Дізнайтесь, яка система<br><span>підійде саме вам</span></h2>
+    <p class="sub" style="margin:0 auto;text-align:center">4 питання — і ми порекомендуємо оптимальну потужність</p>
+  </div>
+  <div class="quiz-wrap fi" id="quiz-box">
+    <div class="quiz-progress" id="qprog">
+      <div class="qp-dot active" id="qd1"></div>
+      <div class="qp-dot" id="qd2"></div>
+      <div class="qp-dot" id="qd3"></div>
+      <div class="qp-dot" id="qd4"></div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="quiz-step active" id="qs1">
+      <div class="quiz-q">Який тип об'єкта?</div>
+      <div class="quiz-opts">
+        <div class="qo" onclick="qNext(1,'house')"><div class="qo-ic">🏠</div><div class="qo-tx">Приватний будинок</div></div>
+        <div class="qo" onclick="qNext(1,'cottage')"><div class="qo-ic">🏡</div><div class="qo-tx">Котедж / Дача</div></div>
+        <div class="qo" onclick="qNext(1,'apt')"><div class="qo-ic">🏢</div><div class="qo-tx">Квартира</div></div>
+        <div class="qo" onclick="qNext(1,'biz')"><div class="qo-ic">🏭</div><div class="qo-tx">Бізнес / Виробництво</div></div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="quiz-step" id="qs2">
+      <div class="quiz-q">Площа об'єкта?</div>
+      <div class="quiz-opts">
+        <div class="qo" onclick="qNext(2,'s')"><div class="qo-ic">📐</div><div class="qo-tx">До 100 м²</div></div>
+        <div class="qo" onclick="qNext(2,'m')"><div class="qo-ic">📐</div><div class="qo-tx">100–200 м²</div></div>
+        <div class="qo" onclick="qNext(2,'l')"><div class="qo-ic">📐</div><div class="qo-tx">200–300 м²</div></div>
+        <div class="qo" onclick="qNext(2,'xl')"><div class="qo-ic">📐</div><div class="qo-tx">Понад 300 м²</div></div>
+      </div>
+      <div class="quiz-nav"><button class="q-back" onclick="qBack(2)">← Назад</button></div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="quiz-step" id="qs3">
+      <div class="quiz-q">Ваш регіон?</div>
+      <div class="quiz-opts">
+        <div class="qo" onclick="qNext(3,'north')"><div class="qo-ic">🗺️</div><div class="qo-tx">Північ (Київ, Чернігів, Суми)</div></div>
+        <div class="qo" onclick="qNext(3,'center')"><div class="qo-ic">🗺️</div><div class="qo-tx">Центр (Вінниця, Черкаси, Полтава)</div></div>
+        <div class="qo" onclick="qNext(3,'south')"><div class="qo-ic">🗺️</div><div class="qo-tx">Південь (Одеса, Херсон, Миколаїв)</div></div>
+        <div class="qo" onclick="qNext(3,'west')"><div class="qo-ic">🗺️</div><div class="qo-tx">Захід / Схід</div></div>
+      </div>
+      <div class="quiz-nav"><button class="q-back" onclick="qBack(3)">← Назад</button></div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="quiz-step" id="qs4">
+      <div class="quiz-q">Щомісячний рахунок за електрику?</div>
+      <div class="quiz-opts">
+        <div class="qo" onclick="qNext(4,'low')"><div class="qo-ic">💡</div><div class="qo-tx">До 1 500 ₴</div></div>
+        <div class="qo" onclick="qNext(4,'mid')"><div class="qo-ic">💡</div><div class="qo-tx">1 500–3 000 ₴</div></div>
+        <div class="qo" onclick="qNext(4,'high')"><div class="qo-ic">💡</div><div class="qo-tx">3 000–6 000 ₴</div></div>
+        <div class="qo" onclick="qNext(4,'vhigh')"><div class="qo-ic">💡</div><div class="qo-tx">Понад 6 000 ₴</div></div>
+      </div>
+      <div class="quiz-nav"><button class="q-back" onclick="qBack(4)">← Назад</button></div>
+    </div>
+
+    <!-- Result -->
+    <div class="quiz-step" id="qs-result">
+      <div class="quiz-result">
+        <div class="qr-badge">✅ Рекомендація для вас</div>
+        <div class="qr-power" id="qr-kw">10 кВт</div>
+        <div style="font-size:15px;color:var(--t2);margin-bottom:4px">рекомендована потужність системи</div>
+        <div class="qr-grid">
+          <div class="qrc"><div class="qrn" id="qr-pay">4.1 р.</div><div class="qrl">Термін окупності</div></div>
+          <div class="qrc"><div class="qrn" id="qr-save">1 350 000 ₴</div><div class="qrl">Економія за 25 років</div></div>
+          <div class="qrc"><div class="qrn" id="qr-co2">12 т/рік</div><div class="qrl">Зекономлено CO₂</div></div>
+        </div>
+        <p style="font-size:14px;color:var(--t2);margin-bottom:20px">Залиште контакт — інженер зробить точний розрахунок безкоштовно</p>
+        <div style="display:flex;gap:10px;max-width:400px;margin:0 auto;flex-wrap:wrap">
+          <input type="tel" class="ci-d" id="quiz-ph" placeholder="📞 Ваш номер телефону" style="border-radius:12px">
+          <button class="bp" style="white-space:nowrap" onclick="submitForm()">Отримати кошторис</button>
+        </div>
+        <button class="q-back" style="margin-top:14px" onclick="qReset()">← Почати знову</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PORTFOLIO (DARK) -->
+<div>
+<section class="sec" id="port">
+  <div class="fi" style="text-align:center">
+    <div class="chip" style="justify-content:center">Портфоліо робіт</div>
+    <h2 class="st" style="text-align:center">Реальні результати<br><span>реальних клієнтів</span></h2>
+  </div>
+  <div class="pg">
+    <div class="pc fi d1">
+      <div class="pc-iw">
+        <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=600&q=80" alt="Київ" loading="lazy">
+        <div class="pc-badge">10 кВт · Київська обл.</div>
+      </div>
+      <div class="pc-info">
+        <h3>Будинок 200 м² · Бородянка</h3>
+        <div class="fr"><span class="fl">Вкладено</span><span class="fv">$7 200</span></div>
+        <div class="fr"><span class="fl">Платили за світло</span><span class="fv">4 200 ₴/міс</span></div>
+        <div class="fr"><span class="fl">Зараз платять</span><span class="fv g">0 ₴/міс</span></div>
+        <div class="fr"><span class="fl">Окупність</span><span class="fv y">3.8 роки</span></div>
+        <button class="bp" style="margin-top:14px;width:100%;justify-content:center" onclick="openModal('consult')">Хочу такий самий результат</button>
+      </div>
+    </div>
+    <div class="pc fi d2">
+      <div class="pc-iw">
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80" alt="Львів" loading="lazy">
+        <div class="pc-badge">15 кВт · Львівська обл.</div>
+      </div>
+      <div class="pc-info">
+        <h3>Будинок 300 м² · Стрий</h3>
+        <div class="fr"><span class="fl">Вкладено</span><span class="fv">$11 500</span></div>
+        <div class="fr"><span class="fl">Платили за світло</span><span class="fv">6 800 ₴/міс</span></div>
+        <div class="fr"><span class="fl">Зараз платять</span><span class="fv g">0 ₴/міс</span></div>
+        <div class="fr"><span class="fl">Окупність</span><span class="fv y">4.2 роки</span></div>
+        <button class="bp" style="margin-top:14px;width:100%;justify-content:center" onclick="openModal('consult')">Прорахувати для мого будинку</button>
+      </div>
+    </div>
+    <div class="pc fi d3">
+      <div class="pc-iw">
+        <img src="https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?w=600&q=80" alt="Одеса" loading="lazy">
+        <div class="pc-badge">8 кВт · Одеська обл.</div>
+      </div>
+      <div class="pc-info">
+        <h3>Котедж 160 м² · Одеса</h3>
+        <div class="fr"><span class="fl">Вкладено</span><span class="fv">$6 000</span></div>
+        <div class="fr"><span class="fl">Платили за світло</span><span class="fv">3 500 ₴/міс</span></div>
+        <div class="fr"><span class="fl">Зараз платять</span><span class="fv g">0 ₴/міс</span></div>
+        <div class="fr"><span class="fl">Окупність</span><span class="fv y">4.0 роки</span></div>
+        <button class="bp" style="margin-top:14px;width:100%;justify-content:center" onclick="openModal('consult')">Хочу такий самий результат</button>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- LEAD MAGNET (DARK) -->
+<section class="sec" id="lm">
+  <div class="lm-wrap">
+    <div class="fi sl" style="position:relative">
+      <div class="lm-glow"></div>
+      <div class="lm-pdf">
+        <div class="lm-book" style="width:220px;padding:0;overflow:hidden;border-radius:8px 18px 18px 8px;transform:rotate(-3deg)">
+          <div style="position:relative">
+            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&q=80" alt="Сонячні панелі" style="width:100%;height:220px;object-fit:cover;display:block;filter:brightness(.55)">
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,8,.3),rgba(8,8,8,.85));display:flex;flex-direction:column;justify-content:flex-end;padding:22px 18px">
+              <div style="font-size:9px;color:var(--y);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;opacity:.85">Безкоштовний чек-лист</div>
+              <div style="font-size:16px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:12px">10 питань перед підписанням договору</div>
+              <div style="background:var(--grad);border-radius:50px;padding:5px 14px;font-size:11px;font-weight:700;color:#000;display:inline-block;width:fit-content">PDF · Безкоштовно</div>
+            </div>
+            <div style="position:absolute;top:0;left:0;bottom:0;width:8px;background:var(--grad)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fi sr">
+      <div class="lm-form">
+        <div class="chip">Подарунок</div>
+        <h3>Не підписуйте договір без цього чек-листу</h3>
+        <p>Ми зібрали 10 питань, які треба поставити будь-якому монтажнику до підписання договору. Захистіть себе від помилок — отримайте безкоштовно.</p>
+        <input type="text" class="lm-input" placeholder="Ваше ім'я">
+        <input type="tel" class="lm-input" placeholder="Номер телефону">
+        <input type="email" class="lm-input" placeholder="Email для надсилання PDF">
+        <button class="bp" style="width:100%;justify-content:center" onclick="submitForm()">📥 Отримати чек-лист безкоштовно</button>
+        <div class="lm-note">🔒 Не спамимо. Тільки корисний матеріал.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SMARTPHONE (DARK) -->
+<section class="sec" id="smart">
+  <div class="fi" style="text-align:center;margin-bottom:40px">
+    <div class="chip" style="justify-content:center">Смартфон управління</div>
+    <h2 class="st" style="text-align:center">Вся ваша станція —<br><span>у вашому смартфоні</span></h2>
+  </div>
+  <div class="sm3">
+    <!-- Col 1: text + features -->
+    <div class="sm3-l fi sl">
+      <p class="sub" style="margin-bottom:28px">Ви бачите економію в режимі реального часу. Ніяких складних налаштувань — ми все зробимо за вас.</p>
+      <ul class="fl-list">
+        <li><div class="flic">📊</div><div class="flt"><h4>Онлайн моніторинг 24/7</h4><p>Генерація, споживання та заряд у реальному часі</p></div></li>
+        <li><div class="flic">🔔</div><div class="flt"><h4>Push-сповіщення</h4><p>Повідомлення при відключенні або повному заряді</p></div></li>
+        <li><div class="flic">📈</div><div class="flt"><h4>Аналітика економії</h4><p>Графіки по днях і місяцях — скільки зекономили</p></div></li>
+      </ul>
+    </div>
+
+    <!-- Col 2: phone mockup -->
+    <div class="phone-wrap fi" style="flex-shrink:0">
+      <div class="phone-glow"></div>
+      <div class="pf">
+        <div class="p-notch"></div>
+        <div class="ps">
+          <div class="ah">
+            <h4>Моя станція</h4>
+            <div class="pw" id="appPow">4.2 кВт</div>
+            <div class="ps2">Генерація зараз</div>
+          </div>
+          <div class="batt">
+            <svg width="90" height="90" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color:#FFD700"/>
+                  <stop offset="100%" style="stop-color:#FF8C00"/>
+                </linearGradient>
+              </defs>
+              <circle class="batt-r" cx="50" cy="50" r="40"/>
+              <circle class="batt-f" cx="50" cy="50" r="40"/>
+            </svg>
+            <div class="bp2">78%</div>
+          </div>
+          <div class="asg">
+            <div class="as"><div class="av">24.3 кВт</div><div class="al">Сьогодні</div></div>
+            <div class="as"><div class="av">847 кВт</div><div class="al">Місяць</div></div>
+            <div class="as"><div class="av">4 720 ₴</div><div class="al">Економія</div></div>
+            <div class="as"><div class="av">4.2 р.</div><div class="al">Окупність</div></div>
+          </div>
+          <div class="ac">
+            <div class="acb" style="height:28%"></div><div class="acb" style="height:44%"></div>
+            <div class="acb" style="height:62%"></div><div class="acb" style="height:80%"></div>
+            <div class="acb" style="height:100%"></div><div class="acb" style="height:93%"></div>
+            <div class="acb" style="height:78%"></div><div class="acb" style="height:62%"></div>
+            <div class="acb" style="height:46%"></div><div class="acb" style="height:30%"></div>
+            <div class="acb" style="height:22%"></div><div class="acb" style="height:16%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Col 3: turbot + buttons -->
+    <div class="sm3-r fi sr">
+      <div class="turb-card">
+        <div class="tc-head"><span>🛠️</span><h4>Пакет «Турбота»</h4></div>
+        <p>Якщо система видасть помилку, ми побачимо це віддалено і приїдемо самі. Вам не треба нічого крутити.</p>
+        <ul class="turb-list">
+          <li>Віддалений моніторинг 24/7</li>
+          <li>Виїзд майстра при будь-якій помилці</li>
+          <li>Щорічне технічне обслуговування</li>
+          <li>Оновлення прошивки інвертора</li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:22px">
+        <button class="bp" onclick="openModal('consult')">📋 Отримати консультацію</button>
+        <a href="#quiz" class="bs" style="text-align:center">⚡ Розрахунок вартості</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS (DARK) -->
+<div id="test">
+<section class="sec">
+  <div class="fi" style="text-align:center">
+    <div class="chip" style="justify-content:center">Відгуки клієнтів</div>
+    <h2 class="st" style="text-align:center">Люди, які вже<br><span>живуть без рахунків за електроенергію</span></h2>
+  </div>
+  <div class="vt-grid">
+    <div class="vt-card fi d1">
+      <div class="vt-vid" onclick="openModal('callback')">
+        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=600&q=80" alt="Відгук Олена" loading="lazy">
+        <div class="vt-play">▶</div>
+      </div>
+      <div class="vt-info">
+        <div class="vt-stars">★★★★★</div>
+        <p class="vt-quote">«Встановили за 2 дні. З того часу не бачила жодного рахунку від ДТЕК. Шкода, що не зробила це раніше.»</p>
+        <div class="vt-name">Олена В.</div>
+        <div class="vt-meta">Київська обл. · 10 кВт</div>
+      </div>
+    </div>
+    <div class="vt-card fi d2">
+      <div class="vt-vid" onclick="openModal('callback')">
+        <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=600&q=80" alt="Відгук Михайло" loading="lazy">
+        <div class="vt-play">▶</div>
+      </div>
+      <div class="vt-info">
+        <div class="vt-stars">★★★★★</div>
+        <p class="vt-quote">«Найкраща інвестиція за роки. Окупність 4 роки реально. Ще й заробляю на «зеленому» тарифі.»</p>
+        <div class="vt-name">Михайло Д.</div>
+        <div class="vt-meta">Харківська обл. · 15 кВт</div>
+      </div>
+    </div>
+    <div class="vt-card fi d3">
+      <div class="vt-vid" onclick="openModal('callback')">
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80" alt="Відгук Ірина" loading="lazy">
+        <div class="vt-play">▶</div>
+      </div>
+      <div class="vt-info">
+        <div class="vt-stars">★★★★★</div>
+        <p class="vt-quote">«Переживала за дах — все ідеально. Пакет «Турбота» — кайф: вони самі приїхали, оновили систему, я нічого не робила.»</p>
+        <div class="vt-name">Ірина К.</div>
+        <div class="vt-meta">Одеська обл. · 8 кВт</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ABOUT (DARK) -->
+<div id="about">
+<section class="sec">
+  <!-- Full-width team photo -->
+  <div class="ab-full fi">
+    <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1400&q=85" alt="Команда SunPower" loading="lazy">
+    <div class="ab-full-overlay">
+      <h2>Реальна інженерна команда —<br><span>ваш надійний партнер</span></h2>
+    </div>
+  </div>
+
+  <!-- Short about text -->
+  <div class="ab-about-text fi">
+    <p>SunPower — сертифіковані електроінженери та монтажники з 6-річним досвідом. Власний склад обладнання, власна сервісна бригада. Жодних субпідрядників, жодних посередників — тільки наші фахівці від проєкту до гарантії.</p>
+  </div>
+
+  <!-- Stats row -->
+  <div class="creds-row fi">
+    <div class="cc"><div class="num">300+</div><div class="lbl">Встановлених станцій</div></div>
+    <div class="cc"><div class="num">6</div><div class="lbl">Років на ринку</div></div>
+    <div class="cc"><div class="num">12</div><div class="lbl">Інженерів у штаті</div></div>
+    <div class="cc"><div class="num">98%</div><div class="lbl">Задоволених клієнтів</div></div>
+  </div>
+
+  <!-- Why cards -->
+  <div class="why-label fi" style="justify-content:center">Чому обирають нас?</div>
+  <div class="why-grid fi" style="max-width:900px;margin:0 auto">
+    <div class="wc d1"><div class="wc-inner"><div class="wc-front"><div class="wi">⚡</div><h4>Монтаж за 3 дні</h4></div><div class="wc-back"><p>Власна бригада без субпідрядників. Фотофіксація кожного етапу.</p></div></div></div>
+    <div class="wc d2"><div class="wc-inner"><div class="wc-front"><div class="wi">📋</div><h4>Всі документи</h4></div><div class="wc-back"><p>Погодження з обленерго та «зелений» тариф — включено у вартість.</p></div></div></div>
+    <div class="wc d3"><div class="wc-inner"><div class="wc-front"><div class="wi">🛡️</div><h4>Юридична гарантія</h4></div><div class="wc-back"><p>25 років на панелі, 10 на інвертор. У договорі, не на словах.</p></div></div></div>
+    <div class="wc d4"><div class="wc-inner"><div class="wc-front"><div class="wi">📱</div><h4>Сервіс онлайн</h4></div><div class="wc-back"><p>Бачимо помилки системи раніше, ніж ви. Приїдемо самі.</p></div></div></div>
+    <div class="wc d5"><div class="wc-inner"><div class="wc-front"><div class="wi">💰</div><h4>Без переплат</h4></div><div class="wc-back"><p>Власний склад = ціна виробника. Без посередників і накруток.</p></div></div></div>
+    <div class="wc d6"><div class="wc-inner"><div class="wc-front"><div class="wi">☕</div><h4>Приїдьте до нас</h4></div><div class="wc-back"><p>Покажемо обладнання наживо і розрахуємо систему за кавою.</p></div></div></div>
+  </div>
+
+  <div style="text-align:center;margin-top:30px">
+    <button class="bp fi" onclick="openModal('coffee')">☕ Приїхати на каву та побачити обладнання</button>
+  </div>
+</section>
+</div>
+
+<!-- PROCESS (DARK) -->
+<div id="proc">
+<section class="sec">
+  <div class="fi" style="text-align:center">
+    <div class="chip" style="justify-content:center">Етапи роботи</div>
+    <h2 class="st" style="text-align:center">Від заявки до<br><span>енергонезалежності</span></h2>
+    <p class="sub" style="margin:0 auto;text-align:center">Сім кроків — і ваш будинок більше не залежить від ДТЕК</p>
+  </div>
+  <div class="timeline">
+    <div class="tl-item fi d1"><div class="tl-num">1</div><div class="tl-card"><div class="tl-head"><div class="ti">📝</div><h4>Аналіз</h4></div><p>Визначаємо ваші потреби, споживання та бюджет. Складаємо детальний план робіт під ваш будинок.</p></div></div>
+    <div class="tl-item fi d2"><div class="tl-num">2</div><div class="tl-card"><div class="tl-head"><div class="ti">📐</div><h4>Проектування</h4></div><p>Розробляємо систему під технічні і фінансові потреби. Інженер виїжджає безкоштовно.</p><span class="tl-badge">Безкоштовний виїзд</span></div></div>
+    <div class="tl-item fi d3"><div class="tl-num">3</div><div class="tl-card"><div class="tl-head"><div class="ti">🚚</div><h4>Доставка</h4></div><p>Швидко та надійно доставляємо обладнання з власного складу. Без затримок і пошуку запчастин.</p></div></div>
+    <div class="tl-item fi d4"><div class="tl-num">4</div><div class="tl-card"><div class="tl-head"><div class="ti">🔧</div><h4>Монтаж</h4></div><p>Встановлюємо систему за всіма технічними нормами. Бригада у фірмовому одязі, фото кожного етапу.</p><span class="tl-badge">2–3 робочі дні</span></div></div>
+    <div class="tl-item fi d5"><div class="tl-num">5</div><div class="tl-card"><div class="tl-head"><div class="ti">⚙️</div><h4>Налаштування системи</h4></div><p>Перевіряємо обладнання, налаштовуємо додаток на вашому смартфоні, забезпечуємо стабільну роботу.</p></div></div>
+    <div class="tl-item fi d6"><div class="tl-num">6</div><div class="tl-card"><div class="tl-head"><div class="ti">🌿</div><h4>Підключення «зеленого» тарифу</h4></div><p>Допомагаємо з документами для продажу надлишкової енергії в мережу.</p><span class="tl-badge">За потреби</span></div></div>
+    <div class="tl-item fi d7"><div class="tl-num">7</div><div class="tl-card"><div class="tl-head"><div class="ti">🛠️</div><h4>Сервісне обслуговування</h4></div><p>Регулярно перевіряємо систему віддалено. Якщо щось не так — побачимо першими і приїдемо самі.</p><span class="tl-badge">Безстроково</span></div></div>
+  </div>
+  <div class="pf-block fi">
+    <h3>Залишити заявку</h3>
+    <div class="fi-form">
+      <input type="tel" placeholder="Ваш номер телефону" id="procPh">
+      <button class="bd" onclick="submitForm()">Залишити заявку →</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FAQ (DARK) -->
+<div id="faq">
+<section class="sec">
+  <div class="fi" style="text-align:center">
+    <div class="chip" style="justify-content:center">Часті запитання</div>
+    <h2 class="st" style="text-align:center">Відповіді на<br><span>головні питання</span></h2>
+  </div>
+  <div class="faq-list">
+    <div class="fqi fi d1"><div class="fqq" onclick="tFaq(this)">Чи потрібні акумулятори, якщо є підключення до мережі?<span class="fqic">+</span></div><div class="fqa">Залежить від цілі. Для зниження рахунків — онлайн-система без акумуляторів. Для повної автономії — гібридна система з LiFePO4. Інженер підбере оптимальне рішення під ваш бюджет.</div></div>
+    <div class="fqi fi d2"><div class="fqq" onclick="tFaq(this)">Чи потрібен дозвіл від РЕМ?<span class="fqic">+</span></div><div class="fqa">Для систем до 30 кВт — спрощений порядок. Ми повністю беремо на себе документацію та погодження з обленерго. Входить у вартість монтажу.</div></div>
+    <div class="fqi fi d3"><div class="fqq" onclick="tFaq(this)">Яка потужність панелей взимку та в хмарну погоду?<span class="fqic">+</span></div><div class="fqa">Панелі генерують від розсіяного світла. Взимку ефективність 30–50%, у хмарну погоду 20–40%. Система розраховується з запасом + акумулятор компенсує різницю.</div></div>
+    <div class="fqi fi d4"><div class="fqq" onclick="tFaq(this)">Чи пошкодить монтаж мій дах?<span class="fqic">+</span></div><div class="fqa">Ні. Ми використовуємо сертифіковані кронштейни з EPDM-прокладками, які рівномірно розподіляють навантаження без просвердлювання покриття. Підходять для черепиці, металочерепиці та бітумної плитки. Договір містить окремий пункт про повну матеріальну відповідальність за будь-які пошкодження даху. Кожен об'єкт фотографується до, під час і після монтажу.</div></div>
+    <div class="fqi fi"><div class="fqq" onclick="tFaq(this)">Скільки часу займає монтаж і чи буде бруд у будинку?<span class="fqic">+</span></div><div class="fqa">Стандартна система встановлюється за 2–3 робочих дні. Бригада працює на даху та в технічних приміщеннях — усередині будинку майже нічого не змінюється. Після завершення майстри прибирають за собою. Фотозвіт надається клієнту.</div></div>
+    <div class="fqi fi"><div class="fqq" onclick="tFaq(this)">Що входить у вартість «під ключ»?<span class="fqic">+</span></div><div class="fqa">Проєктування, виїзд інженера, всі компоненти (панелі, інвертор, акумулятори, кабелі, кріплення), монтаж, налаштування, документація, погодження з обленерго, 25 років гарантії на панелі, 10 років на інвертор, пакет «Турбота».</div></div>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER CTA (DARK) -->
+<div>
+<section class="sec">
+  <div class="fcta fi">
+    <div class="chip" style="justify-content:center">Залишилися питання?</div>
+    <h2>Ми зателефонуємо і<br><span style="background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent">все пояснимо</span></h2>
+    <p>Залиште номер — зателефонуємо впродовж 15 хвилин. Без скриптів і тиску.</p>
+    <div class="ff">
+      <input type="tel" placeholder="Ваш номер телефону" id="ftPh">
+      <button class="bp" onclick="submitForm()">📞 Залишити заявку</button>
+    </div>
+    <p style="font-size:12px;color:var(--t3);margin-top:12px">Не передаємо дані третім особам · Пн-Сб 9:00–18:00</p>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <nav class="fnav">
+    <a href="#bk">Панелі</a>
+    <a href="#quiz">Підбір системи</a>
+    <a href="#quiz">Підбір системи</a>
+    <a href="#port">Кейси</a>
+    <a href="#about">Про нас</a>
+    <a href="#proc">Етапи</a>
+    <a href="#faq">FAQ</a>
+    <a href="tel:+380671234567">+38 (067) 123-45-67</a>
+  </nav>
+  <p class="fcp">© 2024 SunPower. Всі права захищені. Ліцензія №СЕ-2024-0123</p>
+</footer>
+
+<!-- FLOATING: Задати питання (desktop) -->
+<button class="float-ask" onclick="openModal('engineer')" title="Задати питання">Задати питання</button>
+
+<!-- FLOATING: Call button (mobile) -->
+<a href="tel:+380671234567" class="float-call" title="Зателефонувати">📞</a>
+
+<!-- MODAL -->
+<div class="mo" id="mo" onclick="moOut(event)">
+  <div class="md">
+    <button class="mc-btn" onclick="closeMo()">✕</button>
+    <div id="mc-content"></div>
+  </div>
+</div>
+
+<!-- SCROLL TOP -->
+<button class="stt" id="stt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- TOAST -->
+<div id="toast">✅ Дякуємо! Зв'яжемося з вами найближчим часом.</div>
+
+<script>
+/* VIDEO HERO */
+(function(){
+  const vid=document.getElementById('hero-vid');
+  if(!vid)return;
+  function showVid(){
+    vid.style.display='block';
+    document.querySelectorAll('.hv').forEach(el=>el.style.display='none');
+  }
+  vid.addEventListener('loadeddata',showVid,{once:true});
+  vid.addEventListener('canplay',showVid,{once:true});
+  vid.load();
+})();
+
+/* PARTICLES */
+const pts=document.getElementById('pts');
+for(let i=0;i<20;i++){
+  const p=document.createElement('div');p.className='particle';
+  const s=Math.random()*3+2;
+  p.style.cssText=`left:${Math.random()*100}%;width:${s}px;height:${s}px;animation-duration:${Math.random()*14+10}s;animation-delay:${Math.random()*14}s`;
+  pts.appendChild(p);
+}
+
+/* HEADER */
+window.addEventListener('scroll',()=>{
+  document.getElementById('hdr').classList.toggle('s',scrollY>50);
+  document.getElementById('stt').classList.toggle('v',scrollY>400);
+  // active nav
+  const secs=['bk','quiz','port','smart','test','about','proc','faq'];
+  const ids=['bk','quiz','port','smart','test','about','proc','faq'];
+  let cur='';
+  secs.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&el.getBoundingClientRect().top<200)cur=id;
+  });
+  document.querySelectorAll('.hdr-nav a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  });
+});
+
+/* HAMBURGER */
+function toggleNav(){
+  const n=document.getElementById('nav'),h=document.getElementById('ham');
+  n.classList.toggle('open');h.classList.toggle('open');
+}
+
+/* FADE-IN OBSERVER */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')});
+},{threshold:.08});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+
+/* MONTH CARDS */
+const mdata=[
+  {m:'Січ',v:30,i:'❄️'},
+  {m:'Лют',v:42,i:'❄️'},
+  {m:'Бер',v:62,i:'🌱'},
+  {m:'Кві',v:78,i:'🌷'},
+  {m:'Тра',v:92,i:'☀️'},
+  {m:'Чер',v:100,i:'☀️'},
+  {m:'Лип',v:100,i:'☀️'},
+  {m:'Сер',v:95,i:'☀️'},
+  {m:'Вер',v:75,i:'🍂'},
+  {m:'Жов',v:55,i:'🍂'},
+  {m:'Лис',v:38,i:'🌧️'},
+  {m:'Гру',v:28,i:'❄️'},
+];
+const grid=document.getElementById('mc-grid');
+mdata.forEach(d=>{
+  const dim=d.v<45;
+  grid.innerHTML+=`<div class="mc${dim?' dim':''}">
+    <div class="mc-icon">${d.i}</div>
+    <div class="mc-month">${d.m}</div>
+    <div class="mc-bar-wrap"><div class="mc-bar" style="height:0" data-h="${d.v}%"></div></div>
+    <div class="mc-pct">${d.v}%</div>
+  </div>`;
+});
+// animate bars when visible
+const barObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      document.querySelectorAll('.mc-bar').forEach(b=>{
+        b.style.height=b.dataset.h;
+      });
+      barObs.disconnect();
+    }
+  });
+},{threshold:.3});
+const mg=document.getElementById('mc-grid');
+if(mg)barObs.observe(mg);
+
+function fmt(n){return n.toLocaleString('uk-UA')+' ₴'}
+
+/* MODALS */
+const modals={
+  callback:{t:'Замовити дзвінок',d:'Залиште ваш номер — передзвонимо впродовж 15 хвилин',fields:['tel'],b:'Замовити дзвінок'},
+  consult:{t:'Отримати консультацію',d:'Заповніть форму — передзвонимо протягом 15 хвилин',fields:['name','tel','msg'],b:'Надіслати запит'},
+  hybrid:{t:'Консультація по гібридних станціях',d:'Інженер підбере оптимальне рішення між онлайн та гібридними системами',fields:['name','tel'],b:'Отримати консультацію'},
+  pdf:{t:'Отримати кошторис у PDF',d:'Введіть дані — надішлемо точний розрахунок з вартістю та монтажем',fields:['name','tel'],b:'Отримати кошторис'},
+  engineer:{t:'Задати питання інженеру',d:'Ми відповімо на будь-яке технічне питання щодо сонячних станцій',fields:['name','tel','msg'],b:'Задати питання'},
+  coffee:{t:'Приїдьте до нас в офіс',d:'Залиште номер — домовимося про зручний час за кавою',fields:['name','tel'],b:'Записатися на зустріч'}
+};
+function buildFields(fields){
+  return fields.map(f=>{
+    if(f==='tel')return `<input type="tel" class="mi" placeholder="📞 Номер телефону">`;
+    if(f==='name')return `<input type="text" class="mi" placeholder="👤 Ваше ім'я">`;
+    if(f==='msg')return `<textarea class="mi" placeholder="💬 Коротко — що цікавить?" rows="3" style="resize:none"></textarea>`;
+    return '';
+  }).join('');
+}
+function openModal(t){
+  const c=modals[t]||modals.callback;
+  document.getElementById('mc-content').innerHTML=`
+    <h3>${c.t}</h3><p>${c.d}</p>
+    ${buildFields(c.fields)}
+    <button class="bp" style="width:100%;justify-content:center;margin-top:4px" onclick="subMo()">${c.b}</button>
+  `;
+  document.getElementById('mo').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function closeMo(){document.getElementById('mo').classList.remove('on');document.body.style.overflow='';}
+function moOut(e){if(e.target===document.getElementById('mo'))closeMo();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMo()});
+function subMo(){closeMo();setTimeout(showToast,300)}
+function submitForm(){showToast()}
+
+/* TOAST */
+function showToast(){
+  const t=document.getElementById('toast');
+  t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(16px)'},3200);
+}
+
+/* FAQ */
+function tFaq(el){
+  const item=el.parentElement,open=item.classList.contains('op');
+  document.querySelectorAll('.fqi').forEach(i=>i.classList.remove('op'));
+  if(!open)item.classList.add('op');
+}
+
+/* APP POWER animation */
+setInterval(()=>{
+  const el=document.getElementById('appPow');
+  if(el)el.textContent=(3.4+Math.random()*2.2).toFixed(1)+' кВт';
+},3000);
+
+/* QUIZ */
+const qAnswers={};
+const areaMap={s:5,m:8,l:12,xl:16};
+const billMap={low:1500,mid:2500,high:4500,vhigh:7000};
+const regionMult={south:1.1,center:1.0,north:.95,west:.95};
+
+function qNext(step,val){
+  qAnswers['s'+step]=val;
+  document.getElementById('qs'+step).classList.remove('active');
+  // progress dots
+  document.getElementById('qd'+step).classList.remove('active');
+  document.getElementById('qd'+step).classList.add('done');
+  if(step<4){
+    const next=step+1;
+    document.getElementById('qs'+next).classList.add('active');
+    const nd=document.getElementById('qd'+next);
+    if(nd){nd.classList.add('active');}
+  } else {
+    showQuizResult();
+  }
+}
+function qBack(step){
+  document.getElementById('qs'+step).classList.remove('active');
+  const prev=step-1;
+  document.getElementById('qs'+prev).classList.add('active');
+  document.getElementById('qd'+step).classList.remove('active');
+  document.getElementById('qd'+prev).classList.remove('done');
+  document.getElementById('qd'+prev).classList.add('active');
+}
+function showQuizResult(){
+  const area=qAnswers.s2||'m';
+  const bill=qAnswers.s4||'mid';
+  const region=qAnswers.s3||'center';
+  let kw=areaMap[area]||8;
+  const b=billMap[bill]||2500;
+  if(b>3000)kw=Math.min(kw+2,20);
+  const rm=regionMult[region]||1;
+  const payback=((kw*900*40)/(b*12*rm)).toFixed(1);
+  const save=Math.round(b*12*25*rm).toLocaleString('uk-UA');
+  const co2=Math.round(kw*1.2);
+  document.getElementById('qr-kw').textContent=kw+' кВт';
+  document.getElementById('qr-pay').textContent=payback+' р.';
+  document.getElementById('qr-save').textContent=save+' ₴';
+  document.getElementById('qr-co2').textContent=co2+' т/рік';
+  document.getElementById('qs-result').classList.add('active');
+}
+function qReset(){
+  Object.keys(qAnswers).forEach(k=>delete qAnswers[k]);
+  document.querySelectorAll('.quiz-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('qs1').classList.add('active');
+  ['qd1','qd2','qd3','qd4'].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    el.classList.remove('done','active');
+    if(i===0)el.classList.add('active');
+  });
+}
+
+/* COUNTER ANIMATION */
+function animCounter(el,target){
+  let cur=0;
+  const id=setInterval(()=>{
+    cur=Math.min(cur+Math.ceil(target/55),target);
+    el.textContent=cur+'+';
+    if(cur>=target)clearInterval(id);
+  },30);
+}
+const heroObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target.querySelector('[data-count]');
+      if(el)animCounter(el,+el.dataset.count);
+      heroObs.unobserve(e.target);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('.h-stats').forEach(el=>heroObs.observe(el));
+</script>
+</body>
+</html>
