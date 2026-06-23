@@ -304,9 +304,11 @@ input[type=range]::-webkit-slider-runnable-track{background:linear-gradient(to r
 .wc-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .65s cubic-bezier(.4,0,.2,1)}
 .wc:hover .wc-inner{transform:rotateY(180deg)}
 .wc-front,.wc-back{position:absolute;inset:0;border-radius:14px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px}
-.wc-front{background:var(--bgc);border:1px solid var(--border)}
+.wc-front{background:var(--bgc);border:2px solid rgba(255,215,0,.25)}
 .wc-front .wi{font-size:26px;margin-bottom:8px}
 .wc-front h4{font-size:13px;font-weight:700;color:var(--t1)}
+.wc-front::after{content:'↩';position:absolute;top:8px;right:10px;font-size:11px;color:rgba(255,215,0,.5);font-weight:700}
+.wc.flipped .wc-inner{transform:rotateY(180deg)}
 .wc-back{background:var(--grad);transform:rotateY(180deg)}
 .wc-back p{font-size:12px;color:#000;line-height:1.5;font-weight:600}
 .creds{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
@@ -456,16 +458,27 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
 /* ── TOAST ── */
 #toast{position:fixed;bottom:68px;left:50%;transform:translateX(-50%) translateY(16px);background:#16a34a;color:#fff;padding:12px 26px;border-radius:50px;font-weight:600;font-size:14px;z-index:99999;opacity:0;transition:.3s;pointer-events:none;white-space:nowrap}
 
+/* ── MOBILE FLOAT BUTTONS ── */
+.float-q-mob{display:none;position:fixed;bottom:24px;left:24px;z-index:1500;background:var(--grad);border:none;border-radius:50px;padding:14px 20px;color:#000;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 4px 20px rgba(255,215,0,.55);transition:.3s;white-space:nowrap}
+.float-q-mob:hover{transform:scale(1.06);box-shadow:0 6px 32px rgba(255,215,0,.8)}
+
 /* ── MOBILE NAV ── */
 @media(max-width:900px){
   #hdr.s{padding:11px 20px}
   .hdr-top{padding:13px 20px}
-  .hdr-nav{padding:10px 20px;display:none}
-  .hdr-nav.open{display:flex;flex-wrap:wrap}
+  .hdr-nav{padding:10px 20px;display:none;position:absolute;top:100%;left:0;right:0;background:rgba(8,8,8,.98);border-bottom:1px solid var(--border);z-index:100}
+  .hdr-nav.open{display:flex;flex-wrap:wrap;gap:8px;padding:14px 20px}
+  .hdr-nav a{font-size:14px;padding:8px 16px}
   .ham{display:flex}
   .hdr-ph{font-size:16px}
+  /* Hero: clear header */
+  #hero{padding-top:70px}
+  .h-wrap{padding:44px 20px 40px}
   .sec{padding:56px 20px}
   .bk-cols,.lm-wrap{grid-template-columns:1fr;gap:30px}
+  /* Lead magnet: image on top */
+  .lm-wrap .fi.sl{order:1}
+  .lm-wrap .fi.sr{order:2}
   .sm3{grid-template-columns:1fr;gap:28px}
   .sm3-r{gap:18px}
   .pg,.vt-grid{grid-template-columns:1fr}
@@ -479,20 +492,24 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
   .cloud-grid{grid-template-columns:1fr}
   .quiz-opts{grid-template-columns:1fr 1fr}
   .qr-grid{grid-template-columns:1fr}
-  .months-grid{grid-template-columns:repeat(6,1fr)}
-  .month-section{padding:0 20px 56px}
-  .eflow{flex-direction:column}
-  .ef-arrow{transform:rotate(90deg);padding:4px 0}
-  .ab-full img{height:280px}
-  .float-call{display:flex}
+  /* Month grid: horizontal scroll — all 12 in one row */
+  .month-section{padding:0 20px 56px;overflow-x:auto}
+  .months-grid{grid-template-columns:repeat(12,1fr);min-width:680px;gap:5px}
+  /* Energy flow: 2x2 grid on mobile */
+  .eflow{display:grid;grid-template-columns:1fr 1fr;border-radius:14px;overflow:hidden}
+  .ef-arrow{display:none}
+  .ef-item{padding:20px 12px;border:1px solid var(--border)}
+  .ab-full img{height:260px}
+  /* Float buttons mobile */
+  .float-call{display:flex;bottom:20px;right:20px;width:52px;height:52px}
   .float-ask{display:none}
-  .stt{bottom:88px;right:90px}
+  .float-q-mob{display:flex;bottom:20px;left:20px}
+  .stt{bottom:88px;right:72px}
 }
 @media(max-width:500px){
   .h-btns{flex-direction:column}
   .hdr-r .hdr-ph{display:none}
-  .months-grid{grid-template-columns:repeat(4,1fr)}
-  .why-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
   .cloud-grid{grid-template-columns:1fr}
   .quiz-opts{grid-template-columns:1fr 1fr}
 }
@@ -1056,7 +1073,10 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
 <!-- FLOATING: Задати питання (desktop) -->
 <button class="float-ask" onclick="openModal('engineer')" title="Задати питання">Задати питання</button>
 
-<!-- FLOATING: Call button (mobile) -->
+<!-- FLOATING: Запитання (mobile bottom-left) -->
+<button class="float-q-mob" onclick="openModal('consult')">✉️ Запитання</button>
+
+<!-- FLOATING: Call button (mobile bottom-right) -->
 <a href="tel:+380671234567" class="float-call" title="Зателефонувати">📞</a>
 
 <!-- MODAL -->
@@ -1275,6 +1295,11 @@ function qReset(){
     if(i===0)el.classList.add('active');
   });
 }
+
+/* FLIP CARDS touch */
+document.querySelectorAll('.wc').forEach(card=>{
+  card.addEventListener('click',()=>card.classList.toggle('flipped'));
+});
 
 /* COUNTER ANIMATION */
 function animCounter(el,target){
