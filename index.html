@@ -817,6 +817,38 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
   </div>
 </div>
 
+<!-- CALCULATOR -->
+<section class="sec" id="calc">
+  <div class="fi" style="text-align:center;margin-bottom:36px">
+    <div class="chip" style="justify-content:center">Калькулятор вигоди</div>
+    <h2 class="st" style="text-align:center">Прорахуйте вигоду<br><span>від сонячної станції</span></h2>
+    <p class="sub" style="margin:0 auto;text-align:center">Вкажіть щомісячний рахунок і дізнайтесь скільки заощадите</p>
+  </div>
+  <div class="quiz-wrap fi">
+    <div class="ec-box">
+      <div>
+        <div style="font-size:13px;color:var(--t2);margin-bottom:4px">Щомісячний рахунок за електрику</div>
+        <div class="ecn" id="calc-bill" style="font-size:28px">2 500 ₴</div>
+      </div>
+    </div>
+    <input type="range" min="500" max="15000" value="2500" step="100" id="calc-slider" oninput="calcUpdate(this.value)" style="margin-bottom:8px">
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--t2);margin-bottom:28px">
+      <span>500 ₴/міс</span><span>15 000 ₴/міс</span>
+    </div>
+    <div class="cr-grid">
+      <div class="crc fi d1"><div class="crn" id="calc-kw">8 кВт</div><div class="crl">Рекомендована потужність</div></div>
+      <div class="crc fi d2"><div class="crn" id="calc-cost">$5 760</div><div class="crl">Орієнтовна вартість системи</div></div>
+      <div class="crc fi d3"><div class="crn" id="calc-save">2 250 ₴</div><div class="crl">Економія на місяць</div></div>
+      <div class="crc fi d4"><div class="crn" id="calc-pay">4.3 р.</div><div class="crl">Термін окупності</div></div>
+      <div class="crc fi d5"><div class="crn" id="calc-25y">675 000 ₴</div><div class="crl">Економія за 25 років</div></div>
+      <div class="crc fi d6"><div class="crn" id="calc-co2">10 т/рік</div><div class="crl">Зекономлено CO₂</div></div>
+    </div>
+    <div style="text-align:center;margin-top:24px">
+      <a href="#quiz" class="bp" style="display:inline-flex">Підібрати систему точніше →</a>
+    </div>
+  </div>
+</section>
+
 <!-- QUIZ (DARK) -->
 <section class="sec" id="quiz">
   <div class="fi" style="text-align:center;margin-bottom:36px">
@@ -883,10 +915,11 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
     <!-- Step 5: Contact (required before result) -->
     <div class="quiz-step" id="qs5">
       <div class="quiz-q" style="font-size:clamp(16px,2vw,22px)">📋 Майже готово!</div>
-      <p style="text-align:center;color:var(--t2);font-size:14px;margin-bottom:24px;line-height:1.6">Введіть ім'я та телефон — і ми надішлемо персональний кошторис від інженера</p>
+      <p style="text-align:center;color:var(--t2);font-size:14px;margin-bottom:24px;line-height:1.6">Введіть ваші контактні дані і отримайте персональний кошторис</p>
       <div style="display:flex;flex-direction:column;gap:12px;max-width:360px;margin:0 auto">
         <input type="text" class="ci-d" id="q-name" placeholder="👤 Ваше ім'я">
         <input type="tel" class="ci-d" id="q-tel" placeholder="📞 Номер телефону">
+        <input type="email" class="ci-d" id="q-email" placeholder="✉️ Email адреса">
         <button class="bp" style="width:100%;justify-content:center" onclick="qSubmitContact()">Отримати кошторис →</button>
       </div>
       <div class="quiz-nav"><button class="q-back" onclick="qBack(5)">← Назад</button></div>
@@ -1308,8 +1341,8 @@ window.addEventListener('scroll',()=>{
   document.getElementById('hdr').classList.toggle('s',scrollY>50);
   document.getElementById('stt').classList.toggle('v',scrollY>400);
   // active nav
-  const secs=['bk','quiz','port','smart','test','about','proc','faq'];
-  const ids=['bk','quiz','port','smart','test','about','proc','faq'];
+  const secs=['bk','calc','quiz','port','smart','test','about','proc','faq'];
+  const ids=['bk','calc','quiz','port','smart','test','about','proc','faq'];
   let cur='';
   secs.forEach(id=>{
     const el=document.getElementById(id);
@@ -1437,6 +1470,28 @@ setInterval(()=>{
 },3000);
 
 /* QUIZ */
+/* CALCULATOR */
+function calcUpdate(val){
+  val=parseInt(val);
+  const pct=Math.round((val-500)/(15000-500)*100);
+  document.getElementById('calc-slider').style.setProperty('--prog',pct+'%');
+  document.getElementById('calc-bill').textContent=val.toLocaleString('uk-UA')+' ₴';
+  const kw=Math.max(3,Math.round(val/320));
+  const costUsd=kw*720;
+  const saveMonth=Math.round(val*0.90);
+  const saveYear=saveMonth*12;
+  const payback=((costUsd*41)/saveYear).toFixed(1);
+  const save25=Math.round(saveYear*25);
+  const co2=Math.round(kw*1.2);
+  document.getElementById('calc-kw').textContent=kw+' кВт';
+  document.getElementById('calc-cost').textContent='$'+costUsd.toLocaleString('uk-UA');
+  document.getElementById('calc-save').textContent=saveMonth.toLocaleString('uk-UA')+' ₴';
+  document.getElementById('calc-pay').textContent=payback+' р.';
+  document.getElementById('calc-25y').textContent=save25.toLocaleString('uk-UA')+' ₴';
+  document.getElementById('calc-co2').textContent=co2+' т/рік';
+}
+calcUpdate(2500);
+
 const qAnswers={};
 const areaMap={s:5,m:8,l:12,xl:16};
 const billMap={low:1500,mid:2500,high:4500,vhigh:7000};
