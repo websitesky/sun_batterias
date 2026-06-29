@@ -121,6 +121,35 @@ h2.st span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill
 .h-st .num{font-size:32px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .h-st .lbl{font-size:12px;color:var(--t2);margin-top:3px}
 
+/* ── PARTNERS ── */
+.partners-strip{background:#f6f6f6;border-bottom:1px solid rgba(0,0,0,.08);color:#151515}
+.partners-inner{max-width:1280px;margin:0 auto;padding:22px 48px;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:22px}
+.partners-label{font-size:13px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:1.4px;white-space:nowrap}
+.partners-logos{display:grid;grid-template-columns:repeat(10,minmax(82px,1fr));gap:10px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
+.partner-logo{min-width:82px;padding:9px 8px;border:1px solid rgba(0,0,0,.1);border-radius:8px;background:#fff;color:#222;text-align:center;opacity:1;transition:.25s}
+.partner-logo:hover{border-color:rgba(255,140,0,.35);transform:translateY(-2px)}
+.partner-logo svg{width:46px;height:30px;display:block;margin:0 auto 5px}
+.partner-logo .brand-name{font-size:11px;font-weight:800;line-height:1.15;color:#444;white-space:nowrap}
+.brand-deye{fill:#ea5b2a}.brand-huawei{fill:#d71920}.brand-jinko{fill:#0b9c49}.brand-trina{fill:#1e68b7}.brand-pylon{fill:#3b3b3b}
+.brand-ja{fill:#1d4f91}.brand-longi{fill:#0e74bb}.brand-growatt{fill:#79b82a}.brand-fronius{fill:#d82128}.brand-victron{fill:#2c68b0}
+
+/* ── SERVICES ── */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+.service-card{background:var(--bgc);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:.35s}
+.service-card:hover{transform:translateY(-6px);border-color:rgba(255,215,0,.3);box-shadow:0 16px 48px rgba(0,0,0,.45)}
+.service-card img,.service-placeholder{width:100%;height:190px;object-fit:cover;display:block;filter:brightness(.88);transition:.4s}
+.service-card:hover img{transform:scale(1.04);filter:brightness(1)}
+.service-placeholder{filter:none;background:linear-gradient(135deg,#1f2933,#0b0f14);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.service-placeholder::before{content:'';position:absolute;inset:18px;background:repeating-linear-gradient(90deg,rgba(255,215,0,.24) 0 2px,transparent 2px 18px),repeating-linear-gradient(0deg,rgba(255,255,255,.12) 0 2px,transparent 2px 18px);transform:skewY(-10deg);border:1px solid rgba(255,215,0,.25);border-radius:10px}
+.service-placeholder::after{content:'Сервіс станції';position:relative;z-index:1;padding:8px 14px;background:rgba(0,0,0,.72);border:1px solid rgba(255,215,0,.32);border-radius:50px;color:var(--y);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.service-info{padding:20px}
+.service-info h3{font-size:18px;font-weight:800;margin-bottom:8px;color:var(--t1)}
+.service-info p{font-size:14px;color:var(--t2);line-height:1.65;margin-bottom:14px}
+.service-list{list-style:none;display:grid;gap:6px}
+.service-list li{font-size:13px;color:var(--t2);display:flex;gap:8px;align-items:flex-start}
+.service-list li::before{content:'✓';color:var(--y);font-weight:900;flex-shrink:0}
+.services-cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:32px}
+
 /* ── BLACKOUT ── */
 .bk-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
 .split-photo{display:grid;grid-template-columns:1fr 1fr;border-radius:18px;overflow:hidden;margin-bottom:18px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
@@ -205,6 +234,16 @@ input[type=range]::-webkit-slider-runnable-track{background:linear-gradient(to r
 .crc:hover{border-color:rgba(255,140,0,.35);background:rgba(255,140,0,.07)}
 .crn{font-size:42px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;margin-bottom:6px}
 .crl{font-size:13px;color:var(--t2)}
+.pkg-details{margin:12px 0 26px;background:rgba(255,255,255,.04);border:1px solid rgba(255,215,0,.18);border-radius:16px;overflow:hidden}
+.pkg-details summary{list-style:none;cursor:pointer;padding:18px 22px;font-size:15px;font-weight:800;color:var(--y);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.pkg-details summary::-webkit-details-marker{display:none}
+.pkg-details summary::after{content:'+';width:28px;height:28px;border-radius:50%;background:rgba(255,215,0,.12);display:flex;align-items:center;justify-content:center;color:var(--y);font-size:18px;flex-shrink:0;transition:.25s}
+.pkg-details[open] summary::after{transform:rotate(45deg);background:var(--grad);color:#000}
+.pkg-body{padding:0 22px 20px;color:var(--t2);font-size:14px;line-height:1.65}
+.pkg-body p{color:var(--t1);font-weight:700;margin-bottom:8px}
+.pkg-body ul{list-style:none;display:grid;gap:8px}
+.pkg-body li{padding-left:18px;position:relative}
+.pkg-body li::before{content:'✓';position:absolute;left:0;color:#22c55e;font-weight:800}
 .ec-box{background:linear-gradient(135deg,rgba(255,215,0,.1),rgba(255,140,0,.07));border:1px solid rgba(255,140,0,.2);border-radius:12px;padding:16px 20px;margin-bottom:22px;display:flex;align-items:center;gap:12px}
 .ec-box .ecn{font-size:20px;font-weight:800;color:var(--o)}
 .calc-form{display:flex;gap:11px;flex-wrap:wrap}
@@ -222,6 +261,16 @@ input[type=range]::-webkit-slider-runnable-track{background:linear-gradient(to r
 .pc-badge{position:absolute;top:11px;left:11px;padding:4px 11px;background:rgba(0,0,0,.8);border:1px solid rgba(255,215,0,.4);border-radius:50px;font-size:11px;font-weight:600;color:var(--y)}
 .pc-info{padding:18px}
 .pc-info h3{font-size:15px;font-weight:700;margin-bottom:10px}
+.case-photo{height:195px;background:linear-gradient(135deg,#202020,#111);display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;color:#f2f2f2;position:relative}
+.case-photo::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,215,0,.12),transparent 58%);pointer-events:none}
+.case-photo span{position:relative;font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.72)}
+.case-task{font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:12px}
+.case-specs{display:grid;gap:7px;margin:12px 0 14px}
+.case-spec{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.case-spec:last-child{border-bottom:none}
+.case-spec span:first-child{color:var(--t2)}
+.case-spec span:last-child{font-weight:700;color:var(--t1);text-align:right}
+.case-result{font-size:13px;line-height:1.6;color:var(--t2);background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.18);border-radius:12px;padding:12px}
 .fr{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px}
 .fr:last-of-type{border-bottom:none}
 .fl{color:var(--t2)}.fv{font-weight:600}
@@ -364,7 +413,7 @@ input[type=range]::-webkit-slider-runnable-track{background:linear-gradient(to r
 .fqic{width:27px;height:27px;background:rgba(255,140,0,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--o);flex-shrink:0;transition:.3s}
 .fqi.op .fqic{transform:rotate(45deg);background:var(--o);color:#fff}
 .fqa{padding:0 20px;max-height:0;overflow:hidden;transition:.4s;color:var(--t2);line-height:1.7;font-size:14px}
-.fqi.op .fqa{padding:0 20px 20px;max-height:280px}
+.fqi.op .fqa{padding:0 20px 20px;max-height:420px}
 
 /* ── FOOTER CTA ── */
 .fcta{background:var(--bgc);border:1px solid var(--border);border-radius:26px;padding:68px;text-align:center;position:relative;overflow:hidden;max-width:1280px;margin:0 auto}
@@ -387,6 +436,10 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
 .fnav{display:flex;justify-content:center;gap:22px;margin-bottom:16px;flex-wrap:wrap}
 .fnav a{color:var(--t2);text-decoration:none;font-size:14px;transition:.2s}
 .fnav a:hover{color:var(--y)}
+.footer-info{max-width:980px;margin:0 auto 18px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:left}
+.footer-info div{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:14px}
+.footer-info strong{display:block;color:var(--y);font-size:12px;margin-bottom:5px;text-transform:uppercase;letter-spacing:.8px}
+.footer-info span,.footer-info a{color:var(--t2);font-size:13px;line-height:1.5;text-decoration:none}
 .fcp{font-size:12px;color:var(--t3)}
 
 /* ── MODAL ── */
@@ -466,6 +519,10 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
 .ab-full-overlay h2 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .ab-about-text{max-width:740px;margin:0 auto 36px;text-align:center}
 .ab-about-text p{font-size:16px;color:var(--t2);line-height:1.7}
+.about-contacts{max-width:980px;margin:0 auto 34px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.about-contact{background:var(--bgc);border:1px solid var(--border);border-radius:14px;padding:18px;text-align:left}
+.about-contact .label{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--o);font-weight:800;margin-bottom:7px}
+.about-contact .value{font-size:14px;color:var(--t1);line-height:1.55;font-weight:650}
 .creds-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:800px;margin:0 auto 44px}
 
 /* ── SMARTPHONE 3-COL ── */
@@ -497,6 +554,7 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
   .pg{grid-template-columns:repeat(2,1fr)}
   .vt-grid{grid-template-columns:repeat(2,1fr)}
   .creds-row{grid-template-columns:repeat(2,1fr)}
+  .about-contacts,.footer-info{grid-template-columns:repeat(2,1fr)}
   .ab-full img{height:340px}
   .quiz-wrap{padding:36px 28px}
   .pf-block{padding:28px 32px}
@@ -522,6 +580,10 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
   .h-st .num{font-size:26px}
   /* Sections */
   .sec{padding:52px 18px}
+  .partners-inner{padding:18px;gap:14px;grid-template-columns:1fr}
+  .partners-label{width:100%;white-space:normal}
+  .partners-logos{grid-template-columns:repeat(10,92px)}
+  .services-grid{grid-template-columns:1fr}
   .month-section{padding:0 18px 52px;overflow-x:auto}
   /* Grids → 1 col */
   .bk-cols,.lm-wrap,.sm3,.about-cols{grid-template-columns:1fr;gap:24px}
@@ -530,6 +592,7 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
   .pg,.vt-grid{grid-template-columns:1fr}
   .cloud-grid{grid-template-columns:1fr}
   .creds,.creds-row,.why-grid{grid-template-columns:1fr 1fr}
+  .about-contacts,.footer-info{grid-template-columns:1fr}
   .cr-grid{grid-template-columns:1fr}
   .quiz-opts{grid-template-columns:1fr 1fr}
   .qr-grid{grid-template-columns:1fr 1fr}
@@ -595,6 +658,8 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
   .lm-book-mob{display:block}
   /* Sections */
   .sec{padding:44px 14px}
+  .partners-inner{padding:16px 14px}
+  .partners-logos{grid-template-columns:repeat(10,86px)}
   .month-section{padding:0 14px 44px}
   /* Cloud cards → 1 col */
   .cloud-grid{grid-template-columns:1fr}
@@ -681,6 +746,7 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
     </div>
     <nav class="hdr-nav" id="nav">
       <a href="#bk">Панелі</a>
+      <a href="#services">Послуги</a>
       <a href="#quiz">Підбір системи</a>
       <a href="#port">Кейси</a>
       <a href="#smart">Смартфон</a>
@@ -713,17 +779,117 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
     <div class="h-badge"><span class="h-dot"></span>Понад 300 об'єктів по всій Україні</div>
     <h1 class="h-title">Автономна сонячна<br>станція під ключ</h1>
     <div class="h-ac">Забудьте про відключення назавжди</div>
-    <p class="h-sub">Проєктування, безпечний монтаж за 3 дні та юридична гарантія на систему 25 років.</p>
+    <p class="h-sub">Проєктування, безпечний монтаж за 3 дні та гарантія - 10 років на ключове обладнання і роботи.</p>
     <div class="h-btns">
       <a href="#calc" class="bp">⚡ Розрахувати вартість станції</a>
       <button class="bs" onclick="openModal('consult')">📋 Отримати консультацію</button>
     </div>
     <div class="h-stats">
       <div class="h-st"><div class="num" data-count="300">0</div><div class="lbl">Встановлених станцій</div></div>
-      <div class="h-st"><div class="num">25</div><div class="lbl">Років гарантії</div></div>
+      <div class="h-st"><div class="num">25</div><div class="lbl">До 25 років гарантії на обладнання</div></div>
       <div class="h-st"><div class="num">3</div><div class="lbl">Дні монтажу</div></div>
-      <div class="h-st"><div class="num">0₴</div><div class="lbl">За світло після</div></div>
+      <div class="h-st"><div class="num">менші</div><div class="lbl">Рахунки в сезон</div></div>
     </div>
+  </div>
+</section>
+
+<!-- PARTNERS STRIP -->
+<section class="partners-strip" aria-label="Офіційні партнери">
+  <div class="partners-inner">
+    <div class="partners-label">Офіційні партнери:</div>
+    <div class="partners-logos" aria-label="Логотипи брендів">
+      <div class="partner-logo">
+        <svg viewBox="0 0 80 48" aria-hidden="true"><circle class="brand-deye" cx="40" cy="24" r="17"/><path class="brand-deye" d="M11 24h18M51 24h18M40 4v12M40 32v12" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+        <div class="brand-name">Deye</div>
+      </div>
+      <div class="partner-logo">
+        <svg viewBox="0 0 80 48" aria-hidden="true"><path class="brand-huawei" d="M40 6l7 18h-14zM23 12l13 14-17-5zM57 12l4 9-17 5zM18 27l18 4-10 10zM62 27l-8 14-10-10z"/></svg>
+        <div class="brand-name">Huawei</div>
+      </div>
+      <div class="partner-logo">
+        <svg viewBox="0 0 80 48" aria-hidden="true"><path class="brand-jinko" d="M14 34c15-22 29-24 52-20-13 2-25 9-33 23z"/><circle class="brand-jinko" cx="23" cy="16" r="5"/></svg>
+        <div class="brand-name">Jinko Solar</div>
+      </div>
+      <div class="partner-logo">
+        <svg viewBox="0 0 80 48" aria-hidden="true"><path class="brand-trina" d="M40 7l25 34H15z"/><path d="M40 15l14 20H26z" fill="#fff"/></svg>
+        <div class="brand-name">Trina Solar</div>
+      </div>
+      <div class="partner-logo">
+        <svg viewBox="0 0 80 48" aria-hidden="true"><rect class="brand-pylon" x="15" y="13" width="50" height="22" rx="5"/><rect x="22" y="18" width="36" height="4" rx="2" fill="#fff"/><rect x="22" y="26" width="22" height="4" rx="2" fill="#fff"/></svg>
+        <div class="brand-name">Pylontech</div>
+      </div>
+      <div class="partner-logo">
+        <svg viewBox="0 0 80 48" aria-hidden="true"><path class="brand-ja" d="M17 36l13-24h13L30 36zM44 12h15l4 24H50l-1-7h-9z"/></svg>
+        <div class="brand-name">JA Solar</div>
+      </div>
+      <div class="partner-logo">
+        <svg viewBox="0 0 80 48" aria-hidden="true"><path class="brand-longi" d="M12 33h56v7H12zM18 10h13v18H18zM36 10h13v18H36zM54 10h8v18h-8z"/></svg>
+        <div class="brand-name">LONGi</div>
+      </div>
+      <div class="partner-logo">
+        <svg viewBox="0 0 80 48" aria-hidden="true"><path class="brand-growatt" d="M14 32c14-2 24-12 30-25 3 16 11 25 22 29-19 3-36 1-52-4z"/></svg>
+        <div class="brand-name">Growatt</div>
+      </div>
+      <div class="partner-logo">
+        <svg viewBox="0 0 80 48" aria-hidden="true"><path class="brand-fronius" d="M13 14h54v8H24v6h30v8H13z"/></svg>
+        <div class="brand-name">Fronius</div>
+      </div>
+      <div class="partner-logo">
+        <svg viewBox="0 0 80 48" aria-hidden="true"><path class="brand-victron" d="M13 12h16l11 22 11-22h16L45 40H35z"/></svg>
+        <div class="brand-name">Victron</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES (DARK) -->
+<section class="sec" id="services">
+  <div class="fi" style="text-align:center">
+    <div class="chip" style="justify-content:center">Наші послуги</div>
+    <h2 class="st" style="text-align:center">Закриваємо весь шлях<br><span>від аудиту до сервісу</span></h2>
+    <p class="sub" style="margin:0 auto;text-align:center">Підбираємо рішення під будинок, бюджет і сценарій використання: економія в сезон, резерв під час відключень або продаж надлишків у мережу.</p>
+  </div>
+  <div class="services-grid">
+    <article class="service-card fi d1">
+      <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=700&q=80" alt="Монтаж сонячних панелей на даху" loading="lazy">
+      <div class="service-info">
+        <h3>Сонячні станції під ключ</h3>
+        <p>Проєктуємо, комплектуємо й монтуємо станції для приватних будинків, котеджів і малого бізнесу.</p>
+        <ul class="service-list">
+          <li>Підбір потужності та обладнання</li>
+          <li>Монтаж панелей, інвертора й захисту</li>
+          <li>Пусконалагодження та інструктаж</li>
+        </ul>
+      </div>
+    </article>
+    <article class="service-card fi d2">
+      <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=700&q=80" alt="Електрик налаштовує інвертор і щит захисту" loading="lazy">
+      <div class="service-info">
+        <h3>Резервне живлення будинку</h3>
+        <p>Збираємо гібридні системи з LiFePO4 акумуляторами для стабільної роботи під час відключень.</p>
+        <ul class="service-list">
+          <li>Інвертори Deye, Huawei, Growatt</li>
+          <li>Акумулятори від 5 кВт*год</li>
+          <li>Автоматичне перемикання без ручних дій</li>
+        </ul>
+      </div>
+    </article>
+    <article class="service-card fi d3">
+      <div class="service-placeholder" role="img" aria-label="Тематична заглушка сервісу сонячної станції"></div>
+      <div class="service-info">
+        <h3>Сервіс і модернізація</h3>
+        <p>Перевіряємо діючі системи, оновлюємо обладнання, додаємо АКБ і налаштовуємо моніторинг.</p>
+        <ul class="service-list">
+          <li>Діагностика генерації та помилок</li>
+          <li>Додавання батарей або інвертора</li>
+          <li>Віддалений моніторинг і планове ТО</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+  <div class="services-cta fi">
+    <a href="#quiz" class="bp">⚡ Підібрати рішення</a>
+    <button class="bs" onclick="openModal('consult')">📋 Отримати консультацію</button>
   </div>
 </section>
 
@@ -760,7 +926,7 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
   </div>
 
   <div class="bk-conclusion fi">
-    <p>Панелі працюють навіть у хмарну погоду, генеруючи від розсіяного світла. <span>Ваш будинок</span> виробляє власну енергію і продає надлишок державі.</p>
+    <p>Панелі працюють навіть у хмарну погоду, генеруючи від розсіяного світла. <span>Ваш будинок</span> виробляє власну енергію, а надлишок у теплий сезон можна продавати за програмою Net Billing.</p>
   </div>
 
   <!-- Energy flow visualization -->
@@ -786,7 +952,7 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
     <div class="ef-item">
       <div class="ef-icon">💰</div>
       <div class="ef-label">Надлишок продається</div>
-      <div class="ef-sub">по «зеленому» тарифу</div>
+      <div class="ef-sub">за програмою Net Billing</div>
     </div>
   </div>
 </section>
@@ -794,9 +960,9 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
 <!-- MONTH CARDS (DARK) -->
 <div class="month-section">
   <div class="months-heading fi">
-    <div class="chip" style="justify-content:center">Генерація по місяцях</div>
-    <h2 class="st" style="text-align:center">Скільки генерує станція<br><span>протягом року в Україні</span></h2>
-    <p style="color:var(--t2);text-align:center;max-width:520px;margin:0 auto 32px;font-size:15px">Відсоток від максимальної потужності. Навіть у найкоротші зимові дні — базові потреби покриті.</p>
+    <div class="chip" style="justify-content:center">Очікування vs реальність</div>
+    <h2 class="st" style="text-align:center">Як станція працює<br><span>протягом року?</span></h2>
+    <p style="color:var(--t2);text-align:center;max-width:720px;margin:0 auto 32px;font-size:15px">Весна-літо: ваша станція генерує максимум енергії. Рахунки за електроенергію наближаються до 0 ₴, надлишки можна продавати в мережу за програмою Net Billing.</p>
   </div>
   <div class="month-slider">
     <div class="ms-track" id="ms-track">
@@ -813,7 +979,7 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
     </div>
   </div>
   <div class="month-note fi">
-    <strong>★ Грудень (28%)</strong> — покриває: освітлення, зарядки, роутер, телевізор. Акумулятор компенсує нічний час.
+    <strong>Осінь-зима:</strong> у період короткого світлового дня генерація падає. Головна функція станції взимку — надійне джерело безперебійного живлення під час блекаутів. Акумулятори заряджаються від мережі або генератора, коли світло є, і віддають енергію будинку, коли його немає.
   </div>
 </div>
 
@@ -843,6 +1009,20 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
       <div class="crc fi d5"><div class="crn" id="calc-25y">675 000 ₴</div><div class="crl">Економія за 25 років</div></div>
       <div class="crc fi d6"><div class="crn" id="calc-co2">10 т/рік</div><div class="crl">Зекономлено CO₂</div></div>
     </div>
+    <details class="pkg-details">
+      <summary>Що входить у вартість?</summary>
+      <div class="pkg-body">
+        <p>У вартість «під ключ» входить:</p>
+        <ul>
+          <li>Сонячні панелі: Jinko Solar або Trina Solar (Tier 1), кількість підбирається під потужність станції.</li>
+          <li>Гібридний інвертор: Deye 8kW або аналогічний за характеристиками — 1 шт.</li>
+          <li>Акумуляторна батарея: LiFePO4 Pylontech або аналогічна, від 5 кВт*год — 1 шт.</li>
+          <li>Система кріплень: алюмінієвий профіль для даху з металочерепиці, шиферу або іншого покриття.</li>
+          <li>Електрика та захист: соларні й силові кабелі, щити DC/AC, автоматика, заземлення.</li>
+          <li>Роботи: доставка, професійний монтаж, пусконалагодження, базове налаштування мобільного додатку.</li>
+        </ul>
+      </div>
+    </details>
     <div style="text-align:center;margin-top:24px">
       <a href="#quiz" class="bp" style="display:inline-flex">Підібрати систему точніше →</a>
     </div>
@@ -957,43 +1137,52 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
   <div class="pg">
     <div class="pc fi d1">
       <div class="pc-iw">
-        <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=600&q=80" alt="Київ" loading="lazy">
+        <div class="case-photo"><span>Фото з об'єкта<br>с. Тарасівка</span></div>
         <div class="pc-badge">10 кВт · Київська обл.</div>
       </div>
       <div class="pc-info">
-        <h3>Будинок 200 м² · Бородянка</h3>
-        <div class="fr"><span class="fl">Вкладено</span><span class="fv">$7 200</span></div>
-        <div class="fr"><span class="fl">Платили за світло</span><span class="fv">4 200 ₴/міс</span></div>
-        <div class="fr"><span class="fl">Зараз платять</span><span class="fv g">0 ₴/міс</span></div>
-        <div class="fr"><span class="fl">Окупність</span><span class="fv y">3.8 роки</span></div>
+        <h3>Приватний будинок · с. Тарасівка</h3>
+        <p class="case-task"><strong>Завдання:</strong> забезпечити будинок світлом під час відключень та зменшити рахунки влітку.</p>
+        <div class="case-specs">
+          <div class="case-spec"><span>Потужність станції</span><span>10 кВт</span></div>
+          <div class="case-spec"><span>Ємність АКБ</span><span>10 кВт*год</span></div>
+          <div class="case-spec"><span>Час монтажу</span><span>2 дні</span></div>
+        </div>
+        <p class="case-result"><strong>Результат:</strong> 100% автономність базових приладів до 15 годин без сонця.</p>
         <button class="bp" style="margin-top:14px;width:100%;justify-content:center" onclick="openModal('consult')">Хочу такий самий результат</button>
       </div>
     </div>
     <div class="pc fi d2">
       <div class="pc-iw">
-        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80" alt="Львів" loading="lazy">
+        <div class="case-photo"><span>Фото з об'єкта<br>м. Стрий</span></div>
         <div class="pc-badge">15 кВт · Львівська обл.</div>
       </div>
       <div class="pc-info">
-        <h3>Будинок 300 м² · Стрий</h3>
-        <div class="fr"><span class="fl">Вкладено</span><span class="fv">$11 500</span></div>
-        <div class="fr"><span class="fl">Платили за світло</span><span class="fv">6 800 ₴/міс</span></div>
-        <div class="fr"><span class="fl">Зараз платять</span><span class="fv g">0 ₴/міс</span></div>
-        <div class="fr"><span class="fl">Окупність</span><span class="fv y">4.2 роки</span></div>
+        <h3>Приватний будинок · м. Стрий</h3>
+        <p class="case-task"><strong>Завдання:</strong> перекрити пікове споживання великого будинку та підготувати систему до Net Billing.</p>
+        <div class="case-specs">
+          <div class="case-spec"><span>Потужність станції</span><span>15 кВт</span></div>
+          <div class="case-spec"><span>Ємність АКБ</span><span>15 кВт*год</span></div>
+          <div class="case-spec"><span>Час монтажу</span><span>3 дні</span></div>
+        </div>
+        <p class="case-result"><strong>Результат:</strong> резерв для опалення, освітлення, холодильників, інтернету та насосної групи.</p>
         <button class="bp" style="margin-top:14px;width:100%;justify-content:center" onclick="openModal('consult')">Прорахувати для мого будинку</button>
       </div>
     </div>
     <div class="pc fi d3">
       <div class="pc-iw">
-        <img src="https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?w=600&q=80" alt="Одеса" loading="lazy">
+        <div class="case-photo"><span>Фото з об'єкта<br>м. Одеса</span></div>
         <div class="pc-badge">8 кВт · Одеська обл.</div>
       </div>
       <div class="pc-info">
-        <h3>Котедж 160 м² · Одеса</h3>
-        <div class="fr"><span class="fl">Вкладено</span><span class="fv">$6 000</span></div>
-        <div class="fr"><span class="fl">Платили за світло</span><span class="fv">3 500 ₴/міс</span></div>
-        <div class="fr"><span class="fl">Зараз платять</span><span class="fv g">0 ₴/міс</span></div>
-        <div class="fr"><span class="fl">Окупність</span><span class="fv y">4.0 роки</span></div>
+        <h3>Котедж 160 м² · м. Одеса</h3>
+        <p class="case-task"><strong>Завдання:</strong> забезпечити автономність під час відключень без шумного генератора.</p>
+        <div class="case-specs">
+          <div class="case-spec"><span>Потужність станції</span><span>8 кВт</span></div>
+          <div class="case-spec"><span>Ємність АКБ</span><span>5 кВт*год</span></div>
+          <div class="case-spec"><span>Час монтажу</span><span>2 дні</span></div>
+        </div>
+        <p class="case-result"><strong>Результат:</strong> стабільне живлення холодильника, освітлення, роутера, воріт і побутових приладів.</p>
         <button class="bp" style="margin-top:14px;width:100%;justify-content:center" onclick="openModal('consult')">Хочу такий самий результат</button>
       </div>
     </div>
@@ -1130,7 +1319,7 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
 <section class="sec">
   <div class="fi" style="text-align:center">
     <div class="chip" style="justify-content:center">Відгуки клієнтів</div>
-    <h2 class="st" style="text-align:center">Люди, які вже<br><span>живуть без рахунків за електроенергію</span></h2>
+    <h2 class="st" style="text-align:center">Люди, які вже<br><span>мають резервне живлення вдома</span></h2>
   </div>
   <div class="vt-grid">
     <div class="vt-card fi d1">
@@ -1140,7 +1329,7 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
       </div>
       <div class="vt-info">
         <div class="vt-stars">★★★★★</div>
-        <p class="vt-quote">«Встановили за 2 дні. З того часу не бачила жодного рахунку від ДТЕК. Шкода, що не зробила це раніше.»</p>
+        <p class="vt-quote">«Встановили за 2 дні. Влітку рахунки майже зникли, а під час відключень будинок живе від акумулятора.»</p>
         <div class="vt-name">Олена В.</div>
         <div class="vt-meta">Київська обл. · 10 кВт</div>
       </div>
@@ -1152,7 +1341,7 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
       </div>
       <div class="vt-info">
         <div class="vt-stars">★★★★★</div>
-        <p class="vt-quote">«Найкраща інвестиція за роки. Окупність 4 роки реально. Ще й заробляю на «зеленому» тарифі.»</p>
+        <p class="vt-quote">«Найкраща інвестиція за роки. Окупність прогнозована, а надлишки в сезон можна віддавати в мережу через Net Billing.»</p>
         <div class="vt-name">Михайло Д.</div>
         <div class="vt-meta">Харківська обл. · 15 кВт</div>
       </div>
@@ -1201,8 +1390,8 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
   <div class="why-label fi" style="justify-content:center">Чому обирають нас?</div>
   <div class="why-grid fi" style="max-width:900px;margin:0 auto">
     <div class="wc d1"><div class="wc-inner"><div class="wc-front"><div class="wi">⚡</div><h4>Монтаж за 3 дні</h4></div><div class="wc-back"><p>Власна бригада без субпідрядників. Фотофіксація кожного етапу.</p></div></div></div>
-    <div class="wc d2"><div class="wc-inner"><div class="wc-front"><div class="wi">📋</div><h4>Всі документи</h4></div><div class="wc-back"><p>Погодження з обленерго та «зелений» тариф — включено у вартість.</p></div></div></div>
-    <div class="wc d3"><div class="wc-inner"><div class="wc-front"><div class="wi">🛡️</div><h4>Юридична гарантія</h4></div><div class="wc-back"><p>25 років на панелі, 10 на інвертор. У договорі, не на словах.</p></div></div></div>
+    <div class="wc d2"><div class="wc-inner"><div class="wc-front"><div class="wi">📋</div><h4>Всі документи</h4></div><div class="wc-back"><p>Погодження з обленерго та документи для Net Billing — за потреби.</p></div></div></div>
+    <div class="wc d3"><div class="wc-inner"><div class="wc-front"><div class="wi">🛡️</div><h4>Чесна гарантія</h4></div><div class="wc-back"><p>До 25 років на панелі, 5-10 років на інвертор та АКБ, 3 роки на монтаж.</p></div></div></div>
     <div class="wc d4"><div class="wc-inner"><div class="wc-front"><div class="wi">📱</div><h4>Сервіс онлайн</h4></div><div class="wc-back"><p>Бачимо помилки системи раніше, ніж ви. Приїдемо самі.</p></div></div></div>
     <div class="wc d5"><div class="wc-inner"><div class="wc-front"><div class="wi">💰</div><h4>Без переплат</h4></div><div class="wc-back"><p>Власний склад = ціна виробника. Без посередників і накруток.</p></div></div></div>
     <div class="wc d6"><div class="wc-inner"><div class="wc-front"><div class="wi">☕</div><h4>Приїдьте до нас</h4></div><div class="wc-back"><p>Покажемо обладнання наживо і розрахуємо систему за кавою.</p></div></div></div>
@@ -1228,7 +1417,7 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
     <div class="tl-item fi d3"><div class="tl-num">3</div><div class="tl-card"><div class="tl-head"><div class="ti">🚚</div><h4>Доставка</h4></div><p>Швидко та надійно доставляємо обладнання з власного складу. Без затримок і пошуку запчастин.</p></div></div>
     <div class="tl-item fi d4"><div class="tl-num">4</div><div class="tl-card"><div class="tl-head"><div class="ti">🔧</div><h4>Монтаж</h4></div><p>Встановлюємо систему за всіма технічними нормами. Бригада у фірмовому одязі, фото кожного етапу.</p><span class="tl-badge">2–3 робочі дні</span></div></div>
     <div class="tl-item fi d5"><div class="tl-num">5</div><div class="tl-card"><div class="tl-head"><div class="ti">⚙️</div><h4>Налаштування системи</h4></div><p>Перевіряємо обладнання, налаштовуємо додаток на вашому смартфоні, забезпечуємо стабільну роботу.</p></div></div>
-    <div class="tl-item fi d6"><div class="tl-num">6</div><div class="tl-card"><div class="tl-head"><div class="ti">🌿</div><h4>Підключення «зеленого» тарифу</h4></div><p>Допомагаємо з документами для продажу надлишкової енергії в мережу.</p><span class="tl-badge">За потреби</span></div></div>
+    <div class="tl-item fi d6"><div class="tl-num">6</div><div class="tl-card"><div class="tl-head"><div class="ti">🌿</div><h4>Net Billing</h4></div><p>Допомагаємо з документами для продажу надлишкової енергії в мережу.</p><span class="tl-badge">За потреби</span></div></div>
     <div class="tl-item fi d7"><div class="tl-num">7</div><div class="tl-card"><div class="tl-head"><div class="ti">🛠️</div><h4>Сервісне обслуговування</h4></div><p>Регулярно перевіряємо систему віддалено. Якщо щось не так — побачимо першими і приїдемо самі.</p><span class="tl-badge">Безстроково</span></div></div>
   </div>
   <div class="pf-block fi">
@@ -1249,12 +1438,13 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
     <h2 class="st" style="text-align:center">Відповіді на<br><span>головні питання</span></h2>
   </div>
   <div class="faq-list">
+    <div class="fqi fi d1"><div class="fqq" onclick="tFaq(this)">Яку гарантію ви надаєте?<span class="fqic">+</span></div><div class="fqa">Ми даємо чесну гарантію від виробників та несемо відповідальність за якість монтажу: від 12 до 25 років — гарантія на сонячні панелі, зокрема на лінійну деградацію не більше 15-20%; 5-10 років — гарантія на гібридні інвертори та акумуляторні батареї; 3 роки — наша гарантія на всі монтажні роботи, кріплення та електричні з'єднання.</div></div>
     <div class="fqi fi d1"><div class="fqq" onclick="tFaq(this)">Чи потрібні акумулятори, якщо є підключення до мережі?<span class="fqic">+</span></div><div class="fqa">Залежить від цілі. Для зниження рахунків — онлайн-система без акумуляторів. Для повної автономії — гібридна система з LiFePO4. Інженер підбере оптимальне рішення під ваш бюджет.</div></div>
     <div class="fqi fi d2"><div class="fqq" onclick="tFaq(this)">Чи потрібен дозвіл від РЕМ?<span class="fqic">+</span></div><div class="fqa">Для систем до 30 кВт — спрощений порядок. Ми повністю беремо на себе документацію та погодження з обленерго. Входить у вартість монтажу.</div></div>
     <div class="fqi fi d3"><div class="fqq" onclick="tFaq(this)">Яка потужність панелей взимку та в хмарну погоду?<span class="fqic">+</span></div><div class="fqa">Панелі генерують від розсіяного світла. Взимку ефективність 30–50%, у хмарну погоду 20–40%. Система розраховується з запасом + акумулятор компенсує різницю.</div></div>
     <div class="fqi fi d4"><div class="fqq" onclick="tFaq(this)">Чи пошкодить монтаж мій дах?<span class="fqic">+</span></div><div class="fqa">Ні. Ми використовуємо сертифіковані кронштейни з EPDM-прокладками, які рівномірно розподіляють навантаження без просвердлювання покриття. Підходять для черепиці, металочерепиці та бітумної плитки. Договір містить окремий пункт про повну матеріальну відповідальність за будь-які пошкодження даху. Кожен об'єкт фотографується до, під час і після монтажу.</div></div>
     <div class="fqi fi"><div class="fqq" onclick="tFaq(this)">Скільки часу займає монтаж і чи буде бруд у будинку?<span class="fqic">+</span></div><div class="fqa">Стандартна система встановлюється за 2–3 робочих дні. Бригада працює на даху та в технічних приміщеннях — усередині будинку майже нічого не змінюється. Після завершення майстри прибирають за собою. Фотозвіт надається клієнту.</div></div>
-    <div class="fqi fi"><div class="fqq" onclick="tFaq(this)">Що входить у вартість «під ключ»?<span class="fqic">+</span></div><div class="fqa">Проєктування, виїзд інженера, всі компоненти (панелі, інвертор, акумулятори, кабелі, кріплення), монтаж, налаштування, документація, погодження з обленерго, 25 років гарантії на панелі, 10 років на інвертор, пакет «Турбота».</div></div>
+    <div class="fqi fi"><div class="fqq" onclick="tFaq(this)">Що входить у вартість «під ключ»?<span class="fqic">+</span></div><div class="fqa">Панелі Tier 1, гібридний інвертор, LiFePO4 акумулятор, система кріплень, соларні та силові кабелі, щити DC/AC, автоматика, заземлення, доставка, професійний монтаж, пусконалагодження і базове налаштування мобільного додатку.</div></div>
   </div>
 </section>
 </div>
@@ -1270,16 +1460,35 @@ footer{background:rgba(0,0,0,.55);border-top:1px solid var(--border);padding:32p
       <input type="tel" placeholder="Ваш номер телефону" id="ftPh">
       <button class="bp" onclick="submitForm()">📞 Залишити заявку</button>
     </div>
-    <p style="font-size:12px;color:var(--t3);margin-top:12px">Не передаємо дані третім особам · Пн-Сб 9:00–18:00</p>
+    <p style="font-size:12px;color:var(--t3);margin-top:12px">Не передаємо дані третім особам · Пн-Пт 09:00 - 18:00</p>
   </div>
 </section>
 </div>
 
 <!-- FOOTER -->
 <footer>
+  <div class="footer-info">
+    <div>
+      <strong>Телефони</strong>
+      <a href="tel:+380671234567">+38 (067) 123-45-67</a><br>
+      <a href="tel:+380504567890">+38 (050) 456-78-90</a>
+    </div>
+    <div>
+      <strong>Офіс / склад</strong>
+      <span>м. Київ, вул. Будівельників, 12</span>
+    </div>
+    <div>
+      <strong>Юридично</strong>
+      <span>ТОВ «SunPower Україна»<br>ЄДРПОУ 12345678</span>
+    </div>
+    <div>
+      <strong>Графік</strong>
+      <span>Пн-Пт: 09:00 - 18:00</span>
+    </div>
+  </div>
   <nav class="fnav">
     <a href="#bk">Панелі</a>
-    <a href="#quiz">Підбір системи</a>
+    <a href="#services">Послуги</a>
     <a href="#quiz">Підбір системи</a>
     <a href="#port">Кейси</a>
     <a href="#about">Про нас</a>
@@ -1341,8 +1550,8 @@ window.addEventListener('scroll',()=>{
   document.getElementById('hdr').classList.toggle('s',scrollY>50);
   document.getElementById('stt').classList.toggle('v',scrollY>400);
   // active nav
-  const secs=['bk','calc','quiz','port','smart','test','about','proc','faq'];
-  const ids=['bk','calc','quiz','port','smart','test','about','proc','faq'];
+  const secs=['bk','services','calc','quiz','port','smart','test','about','proc','faq'];
+  const ids=['bk','services','calc','quiz','port','smart','test','about','proc','faq'];
   let cur='';
   secs.forEach(id=>{
     const el=document.getElementById(id);
